@@ -35,7 +35,8 @@ def ttn_webhook():
                 decoded.get('temperature_celsius', ''),
                 decoded.get('humidity_percent', ''),
                 decoded.get('time_since_last_event_min', ''),
-                decoded.get('event_count', '')
+                decoded.get('event_count', ''),
+                'real'
             ])
 
         print("✅ Paquete recibido y almacenado")
