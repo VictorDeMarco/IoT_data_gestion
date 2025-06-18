@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            justify-items: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Dashboard</h1>
+
+<div class="grid-container">
+
+    <div>
+        <h2>Humedad (%)</h2>
+        <canvas id="humidityChart" width="800" height="450"></canvas>
+    </div>
+
+
+    <div>
+        <h2>Temperatura (°C)</h2>
+        <canvas id="temperatureChart" width="800" height="450"></canvas>
+    </div>
+
+
+</div>
+
+<script>
+    const labels = {{ ids | tojson }};
+    const temperatureData = {{ temperature | tojson }};
+    const humidityData = {{ humidity | tojson }};
+
+
+    new Chart(document.getElementById('humidityChart'), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Humedad (%)',
+                data: humidityData,
+                borderColor: 'green',
+                fill: false,
+                tension: 0.1
+            }]
+        }
+    });
+
+    new Chart(document.getElementById('temperatureChart'), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Temperatura (°C)',
+                data: temperatureData,
+                borderColor: 'red',
+                fill: false,
+                tension: 0.1
+            }]
+        }
+    });
+
+
+</script>
+</body>
+</html>
