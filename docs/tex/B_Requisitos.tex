@@ -2,39 +2,177 @@
 
 \section{Introducción}
 
-Una muestra de cómo podría ser una tabla de casos de uso:
+En este apartado se describen los objetivos generales del proyecto, los requisitos tanto funcionales como no funcionales y los distintos casos de uso del software.
 
 % Caso de Uso 1 -> Consultar Experimentos.
+%\begin{table}[p]
+%	\centering
+%	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+%		\toprule
+%		\textbf{CU-1}    & \textbf{Ejemplo de caso de uso}\\
+%		\toprule
+%		\textbf{Versión}              & 1.0    \\
+%		\textbf{Autor}                & Alumno \\
+%		\textbf{Requisitos asociados} & RF-xx, RF-xx \\
+%		\textbf{Descripción}          & La descripción del CU \\
+%		\textbf{Precondición}         & Precondiciones (podría haber más de una) \\
+%		\textbf{Acciones}             &
+%		\begin{enumerate}
+%			\def\labelenumi{\arabic{enumi}.}
+%			\tightlist
+%			\item Pasos del CU
+%			\item Pasos del CU (añadir tantos como sean necesarios)
+%		\end{enumerate}\\
+%		\textbf{Postcondición}        & Postcondiciones (podría haber más de una) \\
+%		\textbf{Excepciones}          & Excepciones \\
+%		\textbf{Importancia}          & Alta o Media o Baja... \\
+%		\bottomrule
+%	\end{tabularx}
+%	\caption{CU-1 Nombre del caso de uso.}
+%\end{table}
+%
+\section{Objetivos generales}
+\begin{enumerate}
+
+    \item Obtener datos ambientales (temperatura, humedad y detección de movimiento) desde sensores LoRaWAN instalados en el entorno doméstico.
+    \item Transmitir dichos datos obtenidos a través de un gateway Dragino hacia la red The Things Network (TTN).
+     \item Recibir los datos enviados por TTN mediante un webhook HTTP a través de una aplicación web desarrollada en Python (Flask) y alamacenar los datos recibidos en un fichero CSV estructurado para su posterior análisis.
+    \item Procesar y visualizar los datos mediante una aplicación web desarrollada con Python y Flask.
+    
+
+\end{enumerate}
+\section{Catálogo de requisitos}
+Una vez claros los objetivos generales del proyecto podemos definir los requisitos del mismo:
+\subsubsection{Requisitos funcionales}
+
+\begin{itemize}
+    \item \textbf{RF1-Recopilación de datos}: El sistema debe recoger datos de temperatura, humedad y detección de movimiento desde sensores LoRaWAN.
+    \item \textbf{RF2-Reconducir la información}: 
+    \begin{itemize}
+    \item \textbf{RF2.1}:El gateway Dragino debe reenviar los datos recogidos hacia la red The Things Network (TTN).
+    \item \textbf{RF2.2}: Los datos recogidos deben ser transformados gracias a un payload formatter configurado.
+    \item \textbf{RF2.3}: La aplicación Flask debe recibir peticiones POST desde TTN mediante un webhook HTTP.
+    \end{itemize}
+    \item \textbf{RF3-Almacenamiento de datos}:
+    \begin{itemize}
+    \item \textbf{RF3.1}: La aplicación web encargada de recibir los datos verifica la existencia de un fichero csv con el formato correcto para almacenar nuestros datos.
+    \item \textbf{RF3.2}: La aplicación web comprueba que los datos que recibe son procesables y notifica al usuario si hay algún error o si todo va según lo previsto. 
+    \item \textbf{RF3.3}: La aplicación web añade el paquete recibido en la ultima fila del fichero csv.
+    \end{itemize}
+    \item \textbf{RF4-Visualización web}:
+    \begin{itemize}
+    \item \textbf{RF4.1}: La aplicación web realiza una diferenciación entre los datos recopilados reales y los datos infectados.
+    \item \textbf{RF4.2}: La aplicación web muestra las gráficas correspondientes a los datos reales recopilados.
+    \item \textbf{RF4.3}: La aplicación web permite al usuario navegar entre las distintas opciones de datos (reales, infectados, todos).
+    \end{itemize}
+\end{itemize}
+\subsubsection{Requisitos no funcionales}
+
+\begin{itemize}
+    \item \textbf{RNF1-Rendimiento}: El sistema debe estar disponible siempre que el usuario lo requiera y tener un bajo tiempo de respuesta.
+    \item \textbf{RNF2-Seguridad}: El túnel expuesto mediante Cloudflare debe permitir comunicación segura entre TTN y el servidor local, sin suponer un problema de seguridad para los usuarios.
+    \item \textbf{RNF3-Usabilidad}: El fichero CSV debe tener una estructura homogénea y legible para permitir su análisis posterior y su fácil utilización si el usuario necesitara manipularlo.
+    \item \textbf{RNF4-Compatibilidad}: El sistema debe funcionar correctamente desde los distintos navegadores web mas populares.
+    \item \textbf{RNF5-Mantenimiento}: El programa debe tener una estructura limpia y clara para facilitar el mantenimiento y añadir mas funciones a futuro.
+\end{itemize}
+\section{Especificación de requisitos}
+En este apartado se especifican los distintos casos de uso de nuestro proyecto:
+
 \begin{table}[p]
 	\centering
 	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
 		\toprule
-		\textbf{CU-1}    & \textbf{Ejemplo de caso de uso}\\
+		\textbf{CU-1}    & Recopilar datos desde sensores LoRaWAN \\
 		\toprule
-		\textbf{Versión}              & 1.0    \\
-		\textbf{Autor}                & Alumno \\
-		\textbf{Requisitos asociados} & RF-xx, RF-xx \\
-		\textbf{Descripción}          & La descripción del CU \\
-		\textbf{Precondición}         & Precondiciones (podría haber más de una) \\
+		\textbf{Versión}              & 1.0 \\
+		\textbf{Autor}                & Víctor De Marco Velasco \\
+		\textbf{Requisitos asociados} & RF1 \\
+		\textbf{Descripción}          & El sistema recibe datos ambientales (temperatura, humedad y detección de movimiento) a través de sensores LoRaWAN instalados en un entorno doméstico. \\
+		\textbf{Precondición}         & El sensor debe estar encendido y correctamente enlazado con el gateway LoRaWAN. \\
 		\textbf{Acciones}             &
 		\begin{enumerate}
-			\def\labelenumi{\arabic{enumi}.}
-			\tightlist
-			\item Pasos del CU
-			\item Pasos del CU (añadir tantos como sean necesarios)
+			\item El sensor realiza una medición periódica.
+			\item El sensor transmite los datos al gateway Dragino.
 		\end{enumerate}\\
-		\textbf{Postcondición}        & Postcondiciones (podría haber más de una) \\
-		\textbf{Excepciones}          & Excepciones \\
-		\textbf{Importancia}          & Alta o Media o Baja... \\
+		\textbf{Postcondición}        & El gateway recibe el paquete con los datos del sensor. \\
+		\textbf{Excepciones}          & El sensor no transmite por fallo de batería o conectividad. \\
+		\textbf{Importancia}          & Alta \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-1 Nombre del caso de uso.}
+	\caption{CU-1 Recopilar datos desde sensores LoRaWAN}
 \end{table}
-
-\section{Objetivos generales}
-
-\section{Catálogo de requisitos}
-
-\section{Especificación de requisitos}
-
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-2}    & Reenviar y transformar datos mediante TTN \\
+		\toprule
+		\textbf{Versión}              & 1.0 \\
+		\textbf{Autor}                & Víctor De Marco Velasco \\
+		\textbf{Requisitos asociados} & RF2.1, RF2.2, RF2.3 \\
+		\textbf{Descripción}          & El gateway envía los datos a la red TTN, donde son decodificados mediante un payload formatter y redirigidos a la aplicación Flask mediante webhook. \\
+		\textbf{Precondición}         & El gateway debe estar conectado a Internet y configurado correctamente en TTN. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\item El gateway Dragino reenvía los datos al servidor TTN.
+			\item TTN aplica el payload formatter para decodificar los datos.
+			\item TTN envía los datos a la aplicación Flask a través del webhook HTTP.
+		\end{enumerate}\\
+		\textbf{Postcondición}        & La aplicación Flask recibe un POST con los datos decodificados. \\
+		\textbf{Excepciones}          & Fallo de red, error en el payload formatter o caída del túnel. \\
+		\textbf{Importancia}          & Alta \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-2 Reenviar y transformar datos mediante TTN}
+\end{table}
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-3}    & Almacenar datos en archivo CSV \\
+		\toprule
+		\textbf{Versión}              & 1.0 \\
+		\textbf{Autor}                & Víctor De Marco Velasco \\
+		\textbf{Requisitos asociados} & RF3.1, RF3.2, RF3.3 \\
+		\textbf{Descripción}          & La aplicación Flask verifica el CSV de almacenamiento, comprueba los datos recibidos y los añade correctamente como nueva fila. \\
+		\textbf{Precondición}         & El webhook ha entregado correctamente los datos. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\item La aplicación verifica si el archivo CSV existe y contiene las cabeceras.
+			\item Valida que el contenido recibido sea procesable.
+			\item Añade una nueva fila con los datos recibidos.
+			\item Informa si ha habido un error o se ha completado la operación correctamente.
+		\end{enumerate}\\
+		\textbf{Postcondición}        & El CSV contiene una nueva fila de datos válidos. \\
+		\textbf{Excepciones}          & Formato incorrecto del payload, error de escritura, archivo dañado. \\
+		\textbf{Importancia}          & Alta \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-3 Almacenar datos en archivo CSV}
+\end{table}
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-4}    & Visualizar datos en la aplicación web \\
+		\toprule
+		\textbf{Versión}              & 1.0 \\
+		\textbf{Autor}                & Víctor De Marco Velasco \\
+		\textbf{Requisitos asociados} & RF4.1, RF4.2, RF4.3 \\
+		\textbf{Descripción}          & El usuario puede acceder a una interfaz web para consultar los datos recogidos en formato visual y filtrarlos por tipo. \\
+		\textbf{Precondición}         & El archivo CSV contiene datos válidos. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\item El usuario accede a la aplicación web.
+			\item Selecciona el tipo de datos a visualizar (reales, infectados, todos).
+			\item La aplicación carga los datos desde el CSV.
+			\item Se muestran las gráficas o tablas correspondientes.
+		\end{enumerate}\\
+		\textbf{Postcondición}        & El usuario visualiza los datos filtrados correctamente. \\
+		\textbf{Excepciones}          & El CSV está corrupto o no se puede leer, o hay error en los filtros. \\
+		\textbf{Importancia}          & Media \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-4 Visualizar datos en la aplicación web}
+\end{table}
 
