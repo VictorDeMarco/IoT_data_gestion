@@ -5,38 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55ebc677-1e17-4c70-8019-9d304d11b226" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/python/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/python/templates/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/python/user_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/python/user_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/anexos.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/anexos.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/bibliografia.bib" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bibliografia.bib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/bibliografiaAnexos.bib" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bibliografiaAnexos.bib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/img/readme.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/memoria.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/memoria.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/1_Introduccion.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/1_Introduccion.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/2_Objetivos_del_proyecto.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/2_Objetivos_del_proyecto.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/3_Conceptos_teoricos.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/3_Conceptos_teoricos.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/4_Tecnicas_y_herramientas.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/4_Tecnicas_y_herramientas.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/5_Aspectos_relevantes_del_desarrollo_del_proyecto.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/5_Aspectos_relevantes_del_desarrollo_del_proyecto.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/6_Trabajos_relacionados.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/6_Trabajos_relacionados.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/7_Conclusiones_Lineas_de_trabajo_futuras.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/7_Conclusiones_Lineas_de_trabajo_futuras.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/A_Plan_proyecto.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/A_Plan_proyecto.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/B_Requisitos.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/B_Requisitos.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/C_Diseno.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/C_Diseno.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/D_Manual_programador.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/D_Manual_programador.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/E_Manual_usuario.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/E_Manual_usuario.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/F_ODS.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/F_ODS.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tex/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/readme.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webhook_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/webhook_dataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG-VDV.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/dashboard_flask.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/webhook_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/csv/webhook_dataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/webhook_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/webhook_flask.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;VictorDeMarco&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/VictorDeMarco/TFG-VDV&quot;,
+    &quot;accountId&quot;: &quot;3aa5c71e-7821-4811-a35d-8264820a0932&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -47,6 +64,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "Python.dashboard_flask.executor": "Run",
     "Python.webhook_flask.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -64,104 +83,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="TFG-VDV" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="TFG-VDV" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="TFG-VDV" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.FlaskServer">
-      <module name="TFG-VDV" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="TFG-VDV" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Autodetect">
-      <module name="TFG-VDV" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Doctests">
-      <module name="TFG-VDV" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <method v="2" />
-    </configuration>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Usuario\Documents\TFG-VDV" />
+      <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\python" />
+      <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\python\csv" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -181,7 +108,8 @@
       <updated>1750327783932</updated>
       <workItem from="1750327785032" duration="2520000" />
       <workItem from="1750356954604" duration="4044000" />
-      <workItem from="1750365251791" duration="6000" />
+      <workItem from="1750365251791" duration="383000" />
+      <workItem from="1750704053255" duration="4769000" />
     </task>
     <servers />
   </component>
@@ -189,6 +117,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/TFG_VDV$dashboard_flask.coverage" NAME="dashboard_flask Coverage Results" MODIFIED="1750705228146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python" />
     <SUITE FILE_PATH="coverage/TFG$dashboard_flask.coverage" NAME="dashboard_flask Coverage Results" MODIFIED="1750359240682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/TFG$webhook_flask.coverage" NAME="webhook_flask Coverage Results" MODIFIED="1750328087615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>

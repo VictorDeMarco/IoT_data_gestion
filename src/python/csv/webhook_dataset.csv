@@ -267,3 +267,4 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-19T11:10:55Z,False,False,True,2.4,27,49,0,5695,real
 2025-06-19T12:09:53Z,False,False,False,2.4,27,48,31,5696,real
 2025-06-19T13:09:53Z,False,False,False,2.4,27,45,91,5696,real
+2025-06-23T19:18:38Z,False,False,True,2.4,28,39,0,10063,real

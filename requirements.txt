@@ -1,0 +1,5 @@
+flask>=2.3
+werkzeug>=2.3
+flask_sqlalchemy
+pandas
+psycopg2-binary

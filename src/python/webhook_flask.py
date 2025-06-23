@@ -4,9 +4,9 @@ import csv
 import os
 
 app = Flask(__name__)
-CSV_FILE = 'webhook_dataset.csv'
+CSV_FILE = 'src/python/csv/webhook_dataset.csv'
 
-# Crear fichero CSV si no existe (con cabeceras)
+# Crear fichero CSV si no existe
 if not os.path.exists(CSV_FILE):
     with open(CSV_FILE, 'w', newline='') as f:
         writer = csv.writer(f)
@@ -46,4 +46,4 @@ def ttn_webhook():
         return "Error", 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
