@@ -8,19 +8,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
+{% extends "barra_l.html" %}
 
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
 <div class="container py-4">
 
     <h1 class="text-center mb-4">📡 TFG - IoT Dashboard</h1>
 
     <div class="text-center mb-3">
-        <a href="/?modo=real" class="btn btn-success me-2">Mostrar solo Reales ✅</a>
+        <a href="/" class="btn btn-success me-2">Mostrar solo Reales ✅</a>
         <a href="/?modo=infectado" class="btn btn-danger me-2">Mostrar solo Infectados ❌</a>
         <a href="/?modo=todo" class="btn btn-secondary">Mostrar Todos 🔁</a>
     </div>
 
     <p class="text-center text-muted">Modo actual: <strong>{{ modo }}</strong></p>
-
+    <p class="text-center text-sm text-gray-600 mb-4">
+        Archivo actual: <strong>{{ session['csv_aplicado'] }}</strong>
+    </p>
     <div class="row g-4 justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-sm">
@@ -40,8 +46,6 @@
             </div>
         </div>
     </div>
-    <p><a href="{{ url_for('user_bp.logout') }}">Cerrar sesión</a></p>
-    <p>¿Quieres crearte un usuario? <a href="{{ url_for('user_bp.registro') }}">Regístrate aquí</a></p>
 </div>
 
 <script>
@@ -83,6 +87,6 @@
         }
     });
 </script>
-
+{% endblock %}
 </body>
 </html>

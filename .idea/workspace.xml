@@ -5,21 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55ebc677-1e17-4c70-8019-9d304d11b226" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/python/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/python/templates/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/python/user_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/python/user_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/python/auth_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/python/csv/prueba1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/python/csv_routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/python/templates/barra_l.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/python/templates/csv_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/python/templates/csv_view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG-VDV.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dashboard_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/dashboard_flask.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webhook_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/csv/webhook_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webhook_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/webhook_flask.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/csv/webhook_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/csv/webhook_dataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/dashboard_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/dashboard_flask.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/user_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/user_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/user_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/user_routes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,10 +49,10 @@
     &quot;accountId&quot;: &quot;3aa5c71e-7821-4811-a35d-8264820a0932&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -62,31 +61,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Python.dashboard_flask.executor": "Run",
-    "Python.webhook_flask.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dashboard_flask.executor&quot;: &quot;Run&quot;,
+    &quot;Python.webhook_flask.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Usuario\Documents\TFG-VDV" />
       <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\python" />
+      <recent name="C:\Users\Usuario\Documents\TFG-VDV" />
       <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\python\csv" />
     </key>
   </component>
@@ -109,7 +108,12 @@
       <workItem from="1750327785032" duration="2520000" />
       <workItem from="1750356954604" duration="4044000" />
       <workItem from="1750365251791" duration="383000" />
-      <workItem from="1750704053255" duration="4769000" />
+      <workItem from="1750704053255" duration="7444000" />
+      <workItem from="1750713919799" duration="117000" />
+      <workItem from="1750714077633" duration="10000" />
+      <workItem from="1750719275200" duration="1267000" />
+      <workItem from="1750720743220" duration="5332000" />
+      <workItem from="1750775134950" duration="355000" />
     </task>
     <servers />
   </component>

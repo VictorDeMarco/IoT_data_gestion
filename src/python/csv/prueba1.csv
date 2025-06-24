@@ -1,0 +1,4 @@
+timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_celsius,humidity_percent,time_since_last_event_min,event_count,estado
+2025-06-12T23:05:37Z,False,False,True,2.4,26,45,0,719,real
+2025-06-12T23:06:03Z,False,False,True,2.4,26,46,0,722,real
+2025-06-12T23:06:03Z,False,False,True,2.4,46,26,0,722,infectado
