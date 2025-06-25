@@ -26,21 +26,41 @@ COLUMNAS_VALIDAS = [
 @csv_bp.route('/csv')
 @login_requerido
 def listar_csv():
+    usuario_id = session.get('usuario_id')
     archivos = []
-    for f in os.listdir(CSV_DIR):
-        if f.endswith('.csv'):
-            path = os.path.join(CSV_DIR, f)
+
+    # Archivo base compartido
+    archivo_base = os.path.join(CSV_DIR, 'webhook_dataset.csv')
+    if os.path.exists(archivo_base):
+        archivos.append({
+            'nombre': 'webhook_dataset.csv',
+            'es_base': True,
+            'tamano': round(os.path.getsize(archivo_base) / 1024, 2),
+            'modificado': datetime.fromtimestamp(os.path.getmtime(archivo_base), tz=pytz.utc).astimezone(zona).strftime('%d/%m/%Y %H:%M')
+        })
+    # Archivos personales del usuario
+    user_dir = os.path.join(CSV_DIR, f'user_{usuario_id}')
+    if os.path.exists(user_dir):
+        for nombre in os.listdir(user_dir):
             archivos.append({
-                'nombre': f,
-                'tamano': round(os.path.getsize(path) / 1024, 2),
-                'modificado': datetime.fromtimestamp(os.path.getmtime(path), tz=pytz.utc).astimezone(zona).strftime('%d/%m/%Y %H:%M')
+                'nombre': nombre,
+                'es_base': False,
+                'tamano': round(os.path.getsize(user_dir) / 1024, 2),
+                'modificado': datetime.fromtimestamp(os.path.getmtime(user_dir), tz=pytz.utc).astimezone(zona).strftime('%d/%m/%Y %H:%M')
             })
+
     return render_template('csv_list.html', archivos=archivos)
 
 @csv_bp.route('/csv/<nombre>')
 @login_requerido
 def ver_csv(nombre):
-    path_archivo = os.path.join(CSV_DIR, nombre)
+    usuario_id = session.get('usuario_id')
+
+    if nombre == 'webhook_dataset.csv':
+        path_archivo = os.path.join(CSV_DIR, nombre)
+    else:
+        path_archivo = os.path.join(CSV_DIR, f'user_{usuario_id}', nombre)
+
     if not os.path.exists(path_archivo):
         return "Archivo no encontrado", 404
 
@@ -53,21 +73,30 @@ def ver_csv(nombre):
 @csv_bp.route('/aplicar/<nombre>', methods=['POST'])
 @login_requerido
 def aplicar_csv(nombre):
-    path_archivo = os.path.join(CSV_DIR, nombre)
+    usuario_id = session.get('usuario_id')
+
+    if nombre == 'webhook_dataset.csv':
+        path_archivo = os.path.join(CSV_DIR, nombre)
+    else:
+        path_archivo = os.path.join(CSV_DIR, f'user_{usuario_id}', nombre)
+
     if os.path.exists(path_archivo):
         session['csv_aplicado'] = nombre
-        flash(f'Se ha aplicado el archivo "{nombre}" al dashboard.', 'success')
     else:
         flash('Archivo no encontrado.', 'error')
-    return redirect(url_for('csv_bp.listar_csv'))
+    return redirect(url_for('dashboard'))
 
 @csv_bp.route('/eliminar/<nombre>', methods=['POST'])
 @login_requerido
 def eliminar_csv(nombre):
-    path_archivo = os.path.join(CSV_DIR, nombre)
+    usuario_id = session.get('usuario_id')
+
+    if nombre == 'webhook_dataset.csv':
+        path_archivo = os.path.join(CSV_DIR, nombre)
+    else:
+        path_archivo = os.path.join(CSV_DIR, f'user_{usuario_id}', nombre)
     if os.path.exists(path_archivo):
         os.remove(path_archivo)
-        flash(f'Archivo "{nombre}" eliminado exitosamente.', 'success')
     else:
         flash(f'Archivo "{nombre}" no encontrado.', 'error')
     return redirect(url_for('csv_bp.listar_csv'))
@@ -105,10 +134,11 @@ def subir_csv():
         archivo.stream.seek(0)
 
         nombre_seguro = secure_filename(archivo.filename)
-        destino = os.path.join(CSV_DIR, nombre_seguro)
+        usuario_id = session.get('usuario_id')
+        user_folder = os.path.join(CSV_DIR, f'user_{usuario_id}')
+        os.makedirs(user_folder, exist_ok=True)
+        destino = os.path.join(user_folder, nombre_seguro)
         archivo.save(destino)
-
-        flash(f'Archivo "{nombre_seguro}" subido correctamente.', 'success')
         return redirect(url_for('csv_bp.listar_csv'))
 
     except Exception as e:

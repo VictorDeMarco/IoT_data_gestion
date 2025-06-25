@@ -39,7 +39,12 @@ def inject_user():
 @login_requerido
 def dashboard():
     nombre_csv = session.get('csv_aplicado', 'webhook_dataset.csv')
-    csv_path = os.path.join(os.path.dirname(__file__), 'csv', nombre_csv)
+    CSV_DIR = os.path.join(os.path.dirname(__file__), 'csv')
+    if nombre_csv == 'webhook_dataset.csv':
+        csv_path = os.path.join(CSV_DIR, nombre_csv)
+    else:
+        usuario_id = session.get('usuario_id')
+        csv_path = os.path.join(CSV_DIR, f'user_{usuario_id}', nombre_csv)
 
     if not os.path.exists(csv_path):
         flash(f'Archivo "{nombre_csv}" no encontrado, usando uno por defecto.', 'error')
