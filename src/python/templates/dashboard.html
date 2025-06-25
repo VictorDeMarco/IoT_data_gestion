@@ -25,7 +25,7 @@
 
     <p class="text-center text-muted">Modo actual: <strong>{{ modo }}</strong></p>
     <p class="text-center text-sm text-gray-600 mb-4">
-        Archivo actual: <strong>{{ session['csv_aplicado'] }}</strong>
+        Archivo actual: <strong>{{ session['csv_aplicado'] if csv_aplicado else 'Archivo por defecto' }}</strong>
     </p>
     <div class="row g-4 justify-content-center">
         <div class="col-md-6">

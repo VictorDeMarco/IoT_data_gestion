@@ -13,7 +13,9 @@
     <div>
       <div class="p-4 border-b">
         <div class="text-xl font-bold">TFG</div>
-        <div class="text-sm text-gray-500">Usuario logueado</div>
+        <div class="text-sm text-gray-500">
+          {{ usuario_actual.nombre if usuario_actual else 'Usuario desconocido' }}
+        </div>
       </div>
 
       <nav class="p-4 text-gray-700">

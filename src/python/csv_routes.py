@@ -1,13 +1,28 @@
 import os
+import pytz
 import pandas as pd
-from flask import Blueprint, session, redirect, flash, render_template, url_for
+from flask import Blueprint, session, redirect, flash, render_template, url_for, request
 from auth_utils import login_requerido
 from datetime import datetime
+from werkzeug.utils import secure_filename
+
 csv_bp = Blueprint('csv_bp', __name__)
 
 
 CSV_DIR = os.path.join(os.path.dirname(__file__), 'csv')
-
+zona = pytz.timezone('Europe/Madrid')
+COLUMNAS_VALIDAS = [
+    "timestamp",
+    "occupied",
+    "button_pressed",
+    "tamper_detected",
+    "battery_voltage",
+    "temperature_celsius",
+    "humidity_percent",
+    "time_since_last_event_min",
+    "event_count",
+    "estado"
+]
 @csv_bp.route('/csv')
 @login_requerido
 def listar_csv():
@@ -18,7 +33,7 @@ def listar_csv():
             archivos.append({
                 'nombre': f,
                 'tamano': round(os.path.getsize(path) / 1024, 2),
-                'modificado': datetime.fromtimestamp(os.path.getmtime(path)).strftime('%d/%m/%Y %H:%M')
+                'modificado': datetime.fromtimestamp(os.path.getmtime(path), tz=pytz.utc).astimezone(zona).strftime('%d/%m/%Y %H:%M')
             })
     return render_template('csv_list.html', archivos=archivos)
 
@@ -45,6 +60,7 @@ def aplicar_csv(nombre):
     else:
         flash('Archivo no encontrado.', 'error')
     return redirect(url_for('csv_bp.listar_csv'))
+
 @csv_bp.route('/eliminar/<nombre>', methods=['POST'])
 @login_requerido
 def eliminar_csv(nombre):
@@ -55,3 +71,46 @@ def eliminar_csv(nombre):
     else:
         flash(f'Archivo "{nombre}" no encontrado.', 'error')
     return redirect(url_for('csv_bp.listar_csv'))
+
+
+
+@csv_bp.route('/nuevo', methods=['GET'])
+@login_requerido
+def subir_csv_form():
+    return render_template('csv_upload.html')
+
+@csv_bp.route('/subir', methods=['POST'])
+@login_requerido
+def subir_csv():
+    archivo = request.files.get('archivo_csv')
+
+    if not archivo:
+        flash("No se seleccionó ningún archivo.", "error")
+        return redirect(url_for('csv_bp.subir_csv_form'))
+
+    if not archivo.filename.endswith('.csv'):
+        flash("Solo se permiten archivos con extensión .csv.", "error")
+        return redirect(url_for('csv_bp.subir_csv_form'))
+
+    try:
+        # Leer las columnas del archivo
+        df = pd.read_csv(archivo)
+
+        columnas_csv = df.columns.tolist()
+        if columnas_csv != COLUMNAS_VALIDAS:
+            flash("Formato del CSV incorrecto. Verifica el formato del archivo CSV base para ver cuál es el formato correcto.", "formato_error")
+            return redirect(url_for('csv_bp.subir_csv_form'))
+
+        # Volver a posicionar el archivo al principio para poder guardarlo
+        archivo.stream.seek(0)
+
+        nombre_seguro = secure_filename(archivo.filename)
+        destino = os.path.join(CSV_DIR, nombre_seguro)
+        archivo.save(destino)
+
+        flash(f'Archivo "{nombre_seguro}" subido correctamente.', 'success')
+        return redirect(url_for('csv_bp.listar_csv'))
+
+    except Exception as e:
+        flash(f"Error al procesar el archivo: {str(e)}", "error")
+        return redirect(url_for('csv_bp.subir_csv_form'))

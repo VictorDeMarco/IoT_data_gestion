@@ -5,20 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55ebc677-1e17-4c70-8019-9d304d11b226" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/python/auth_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/python/csv/prueba1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/python/csv_routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/python/templates/barra_l.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/python/templates/csv_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/python/templates/csv_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/python/templates/csv_upload.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python/csv/webhook_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/csv/webhook_dataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/csv/prueba1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/csv/prueba1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/csv_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/csv_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/python/dashboard_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/dashboard_flask.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/barra_l.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/barra_l.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/csv_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/csv_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/csv_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/csv_view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/python/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python/user_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/user_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python/user_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/user_routes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +109,9 @@
       <workItem from="1750714077633" duration="10000" />
       <workItem from="1750719275200" duration="1267000" />
       <workItem from="1750720743220" duration="5332000" />
-      <workItem from="1750775134950" duration="355000" />
+      <workItem from="1750775134950" duration="477000" />
+      <workItem from="1750804332540" duration="152000" />
+      <workItem from="1750804594418" duration="4958000" />
     </task>
     <servers />
   </component>

@@ -1,12 +1,13 @@
+import pandas as pd
+import os
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from user_model import db
 from user_routes import user_bp
 from csv_routes import csv_bp
-import pandas as pd
-import os
 from auth_utils import login_requerido
+from user_model import Usuario
 app = Flask(__name__)
-app.secret_key = 'super-secret-key'
+app.secret_key = 'f9a8c3086470aa19e0dddfc2c7f3e5b17c0a4d7cf6c0cb38f3a58791f0e77fc9'
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DB_URL', 'sqlite:///default.db')
@@ -28,6 +29,12 @@ with app.app_context():
         db.session.add(admin)
         db.session.commit()
 
+@app.context_processor
+def inject_user():
+    usuario = None
+    if 'usuario_id' in session:
+        usuario = Usuario.query.get(session['usuario_id'])
+    return dict(usuario_actual=usuario)
 @app.route('/')
 @login_requerido
 def dashboard():
