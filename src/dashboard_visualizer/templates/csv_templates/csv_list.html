@@ -1,0 +1,73 @@
+{% extends "common_templates/barra_l.html" %}
+{% block title %}Ficheros CSV{% endblock %}
+
+{% block content %}
+<style>
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #007BFF;
+  }
+</style>
+<h1 class="text-center mb-4 text-primary fw-bold">📁 Ficheros CSV disponibles</h1>
+
+<div class="overflow-x-auto">
+  <table aria-label="Tabla que muestra los archivos CSV disponibles" class="min-w-full bg-white shadow-md rounded border border-gray-200">
+  <thead class="bg-gray-100 text-gray-600 text-sm uppercase">
+    <tr>
+      <th class="py-3 px-6 text-left">Archivo</th>
+      <th class="py-3 px-6 text-left">Tamaño</th>
+      <th class="py-3 px-6 text-left">Última modificación</th>
+      <th class="py-3 px-6 text-center">Acción</th>
+    </tr>
+    </thead>
+    <tbody class="text-gray-700 text-sm">
+      {% for archivo in archivos %}
+      <tr class="border-b hover:bg-gray-50">
+        <td class="py-3 px-6">{{ archivo.nombre }}</td>
+        <td class="py-3 px-6">{{ archivo.tamano }} KB</td>
+        <td class="py-3 px-6">{{ archivo.modificado }}</td>
+        <td class="py-3 px-6 text-center">
+          <div class="flex flex-wrap gap-3 justify-center items-center">
+
+            <a href="{{ url_for('csv_bp.ver_csv', nombre=archivo.nombre) }}" class="text-blue-600 hover:underline">
+              🔍 Ver
+            </a>
+
+            <form action="{{ url_for('csv_bp.aplicar_csv', nombre=archivo.nombre) }}" method="post" style="display:inline">
+              <button type="submit" class="text-green-600 hover:underline bg-transparent border-none p-0">
+                ✅ Aplicar
+              </button>
+            </form>
+
+            <form action="{{ url_for('csv_bp.eliminar_csv', nombre=archivo.nombre) }}" method="post"
+                  onsubmit="return confirm('¿Estás seguro de que deseas eliminar {{ archivo.nombre }}?');"
+                  style="display:inline">
+              <button type="submit" class="text-red-600 hover:underline bg-transparent border-none p-0">
+                🗑️ Eliminar
+              </button>
+            </form>
+
+            <form action="{{ url_for('csv_bp.descargar_csv', nombre=archivo.nombre) }}" style="display:inline">
+              <button type="submit" class="text-black-600 hover:underline bg-transparent border-none p-0">
+                ⬇️ Descargar
+              </button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flex justify-end gap-2 mt-3">
+    <a href="{{ url_for('csv_bp.subir_csv_form') }}" class="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+      📤 Añadir fichero
+    </a>
+    <a href="{{ url_for('csv_bp.analizar_csv') }}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+      📊 Analizar fichero
+    </a>
+  </div>
+
+{% endblock %}

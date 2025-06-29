@@ -1,0 +1,86 @@
+{% extends "common_templates/barra_l.html" %}
+{% block title %}Analizar CSV{% endblock %}
+
+{% block content %}
+<style>
+    h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #007BFF;
+    }
+</style>
+<h1 class="text-2xl font-semibold mb-6">📊 Analizar archivo CSV</h1>
+<h2 class=" mb-6">El archivo en cuestión va a ser analizado por el programa para determinar si los paquetes que contiene son reales o han sido infectados: </h2>
+
+<form id="analyzeForm" action="{{ url_for('csv_bp.analizar_csv') }}" method="post" enctype="multipart/form-data"
+      class="border-dashed border-2 border-gray-400 rounded-lg p-8 text-center bg-gray-50"
+      ondrop="handleDrop(event)" ondragover="event.preventDefault()">
+
+    <p class="text-gray-700 mb-4">Arrastra un archivo CSV aquí o haz clic para seleccionar</p>
+
+    <input type="file" id="archivo_csv" name="archivo_csv" accept=".csv" hidden onchange="handleFileSelect(this.files[0])">
+
+    <button type="button" onclick="document.getElementById('archivo_csv').click()"
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mb-4">
+        📂 Seleccionar archivo
+    </button>
+
+    <div id="fileInfo" class="text-gray-700 mb-4 font-medium hidden"></div>
+
+    <button id="submitBtn" type="submit"
+            class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 hidden">
+        🔍 Analizar
+    </button>
+</form>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% for category, message in messages %}
+{% if category == 'analizarf' or category == 'analizart'  %}
+<div class="flex justify-center mt-4">
+    <div class="px-4 py-2 {% if category == 'analizarf'%}bg-red-100 text-red-700 border border-red-300
+        {% elif category == 'analizart' %}bg-green-100 text-green-700 border border-green-300
+        {% endif %}
+         text-center rounded">
+        {{ message }}
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endwith %}
+
+
+<script>
+    function handleFileSelect(file) {
+        if (file && file.name.endsWith('.csv')) {
+            document.getElementById('fileInfo').textContent = 'Archivo seleccionado: ' + file.name;
+            document.getElementById('fileInfo').classList.remove('hidden');
+            document.getElementById('submitBtn').classList.remove('hidden');
+        } else {
+            alert("Solo se permiten archivos .csv");
+            resetForm();
+        }
+    }
+
+    function handleDrop(e) {
+        e.preventDefault();
+        const file = e.dataTransfer.files[0];
+        if (file && file.name.endsWith('.csv')) {
+            const input = document.getElementById('archivo_csv');
+            const dt = new DataTransfer();
+            dt.items.add(file);
+            input.files = dt.files;
+            handleFileSelect(file);
+        } else {
+            alert("Solo se permiten archivos .csv");
+            resetForm();
+        }
+    }
+
+    function resetForm() {
+        document.getElementById('archivo_csv').value = '';
+        document.getElementById('fileInfo').textContent = '';
+        document.getElementById('fileInfo').classList.add('hidden');
+        document.getElementById('submitBtn').classList.add('hidden');
+    }
+</script>
+{% endblock %}

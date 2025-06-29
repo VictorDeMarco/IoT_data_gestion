@@ -5,13 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55ebc677-1e17-4c70-8019-9d304d11b226" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/dashboard_visualizer/infect_routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/common_templates/error.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/csv_templates/csv_analyze.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/infect_templates/infect.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/user_templates/recover.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dashboard_visualizer/utils/paths.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/webhook_receptor/webhook_flask.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python/csv/prueba1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python/csv_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/csv_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python/dashboard_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/dashboard_flask.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python/templates/csv_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/csv_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/python/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/python/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/auth_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/utils/auth_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/csv/user_1/prueba1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/csv/user_2/Dataset_con_datos_infectados.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/csv/webhook_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/csv/webhook_dataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/csv_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/csv_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/dashboard_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/dashboard_flask.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/barra_l.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/common_templates/barra_l.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/csv_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/csv_templates/csv_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/csv_upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/csv_templates/csv_upload.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/csv_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/csv_templates/csv_view.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/dashboard_templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/user_templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/user_templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/user_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/utils/user_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/user_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/user_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/python/webhook_flask.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +44,17 @@
         <option value="Python Script" />
         <option value="HTML File" />
       </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
     </option>
   </component>
   <component name="Git.Settings">
@@ -64,6 +94,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Usuario/Documents/TFG-VDV/src/python/csv&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -76,10 +107,15 @@
   }
 }</component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\python" />
-      <recent name="C:\Users\Usuario\Documents\TFG-VDV" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\python\csv" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\dashboard_visualizer\static" />
+      <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\dashboard_visualizer\utils" />
+      <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\dashboard_visualizer" />
+      <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\dashboard_visualizer\utils\model" />
+      <recent name="C:\Users\Usuario\Documents\TFG-VDV\src" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -109,15 +145,21 @@
       <workItem from="1750775134950" duration="477000" />
       <workItem from="1750804332540" duration="152000" />
       <workItem from="1750804594418" duration="4958000" />
-      <workItem from="1750886482004" duration="2109000" />
+      <workItem from="1750886482004" duration="7207000" />
+      <workItem from="1750919698430" duration="39521000" />
+      <workItem from="1751040723070" duration="11728000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="sonar-project.properties" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TFG_VDV$dashboard_flask.coverage" NAME="dashboard_flask Coverage Results" MODIFIED="1750705228146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python" />
+    <SUITE FILE_PATH="coverage/TFG_VDV$webhook_flask.coverage" NAME="webhook_flask Coverage Results" MODIFIED="1750930325718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/python" />
     <SUITE FILE_PATH="coverage/TFG$dashboard_flask.coverage" NAME="dashboard_flask Coverage Results" MODIFIED="1750359240682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/TFG$webhook_flask.coverage" NAME="webhook_flask Coverage Results" MODIFIED="1750328087615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>

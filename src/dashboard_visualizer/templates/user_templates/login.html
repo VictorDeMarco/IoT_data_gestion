@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar sesión</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f6fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 2rem 2.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 0.6rem;
+      background-color: #007bff;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .registro {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .registro a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .registro a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <h1>Iniciar sesión en</h1>
+  <h1>IoT dashboard</h1>
+  <form action="{{ url_for('user_bp.procesar_login') }}" method="post">
+    <label for="nombre">Usuario:</label>
+    <input type="text" name="nombre" id="nombre" required>
+
+    <label for="password">Contraseña:</label>
+    <input type="password" name="password" id="password" required>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+    {% if category == 'login_error' %}
+    <div style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 5px; margin-top: 15px;margin-bottom: 15px;">
+      {{ message }}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endwith %}
+
+    <button type="submit">Entrar</button>
+  </form>
+
+  <div class="registro">
+    ¿No tienes cuenta? <a href="{{ url_for('user_bp.procesar_registro') }}"> Regístrate aquí</a>
+  </div>
+  <div class="registro">
+    ¿Olvidaste tu contraseña? <a href="{{ url_for('user_bp.procesar_recuperar') }}">Recuperala aquí</a>
+  </div>
+
+</div>
+
+</body>
+</html>

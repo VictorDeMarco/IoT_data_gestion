@@ -4,3 +4,4 @@ flask_sqlalchemy
 pandas~=2.3.0
 psycopg2-binary
 pytz~=2025.2
+requests~=2.32.4

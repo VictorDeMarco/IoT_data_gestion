@@ -1,0 +1,69 @@
+{% extends "common_templates/barra_l.html" %}
+{% block title %}{{ nombre }}{% endblock %}
+
+{% block content %}
+<style>
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #0056b3;
+  }
+
+  code {
+    color: #d63384;
+    font-weight: 600;
+    background-color: #f8f9fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    max-width: 100vw;
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  table {
+    min-width: 1200px;
+  }
+
+  thead th {
+    background-color: #f0f4f8;
+    color: #003366;
+    font-weight: 600;
+  }
+
+  tbody td {
+    white-space: nowrap;
+  }
+
+  tr:hover {
+    background-color: #f8f9fa;
+  }
+</style>
+
+<h1 class="mb-4">📄 Contenido de <code>{{ nombre }}</code></h1>
+
+<div class="table-responsive w-100">
+  <table aria-label="Tabla que muestra el contenido de un archivo csv" class="table table-bordered table-hover table-sm align-middle mb-0">
+    <thead>
+    <tr>
+      {% for col in columnas %}
+      <th class="text-nowrap">{{ col }}</th>
+      {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for fila in filas %}
+    <tr>
+      {% for celda in fila %}
+      <td class="text-nowrap">{{ celda }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

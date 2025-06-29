@@ -1,0 +1,98 @@
+{% extends "common_templates/barra_l.html" %}
+{% block content %}
+<style>
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #007BFF;
+  }
+</style>
+<div class="container py-4">
+  <h1 class="text-center mb-4 text-primary fw-bold">🔬 Infectar sistema</h1>
+
+  <!-- Manual packet creation -->
+  <form method="POST" class="card p-4 mb-5 shadow-sm bg-white">
+    <h3 class="h5 mb-3 text-primary">📝 Crear paquete manual</h3>
+
+    <div class="form-check mb-2">
+      <input type="checkbox" class="form-check-input" name="occupied" id="occupied">
+      <label class="form-check-label" for="occupied">Ocupado</label>
+    </div>
+    <div class="form-check mb-2">
+      <input type="checkbox" class="form-check-input" name="button_pressed" id="button_pressed">
+      <label class="form-check-label" for="button_pressed">Botón pulsado</label>
+    </div>
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" name="tamper_detected" id="tamper_detected">
+      <label class="form-check-label" for="tamper_detected">Presencia (tamper)</label>
+    </div>
+
+    <div class="row g-3 mb-3">
+      <div class="col-md-6">
+        <label class="form-label">Voltaje batería</label>
+        <input type="number" step="0.01" name="battery_voltage" class="form-control" required>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Temperatura (°C)</label>
+        <input type="number" name="temperature_celsius" class="form-control" required>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Humedad (%)</label>
+        <input type="number" name="humidity_percent" class="form-control" required>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Minutos desde último evento</label>
+        <input type="number" name="time_since_last_event_min" class="form-control" required>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Event count</label>
+        <input type="number" name="event_count" class="form-control" required>
+      </div>
+    </div>
+
+    <button type="submit" name="previsualizar_manual" class="btn btn-primary">
+      Previsualizar manual
+    </button>
+  </form>
+
+  <!-- Random packet generation -->
+  <form method="POST" class="mb-5">
+    <div class="card p-4 shadow-sm bg-white">
+      <h3 class="h5 mb-3 text-primary">🎲 Generar paquete aleatorio</h3>
+      <button type="submit" name="enviar_aleatorio" class="btn btn-secondary">
+        Generar
+      </button>
+    </div>
+  </form>
+
+  {% if paquete_preparado %}
+  <div class="card p-4 shadow-sm bg-light border mb-4">
+    <h4 class="h6 text-primary">📦 Paquete generado (previsualización)</h4>
+    <pre class="bg-white p-3 rounded border mt-2 text-sm">{{ paquete_preparado | tojson(indent=2) }}</pre>
+
+    <form method="POST" class="d-flex gap-3 mt-4">
+      <button type="submit" name="confirmar_paquete" class="btn btn-success">
+        ✅ Confirmar envío
+      </button>
+      <button type="submit" name="cancelar_paquete" class="btn btn-danger">
+        ❌ Cancelar
+      </button>
+    </form>
+  </div>
+  {% endif %}
+
+  <!-- Flash messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+  {% if category == 'infectt' or category == 'infecttf' %}
+  <div class="flex justify-center mt-4">
+  <div class="alert {% if category == 'infecttf' %}alert-danger{% elif category == 'infectt' %}alert-success{% endif %} text-center">
+    {{ message }}
+  </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+  {% endwith %}
+
+</div>
+{% endblock %}

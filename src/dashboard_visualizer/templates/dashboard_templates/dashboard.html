@@ -1,0 +1,108 @@
+
+
+{% extends "common_templates/barra_l.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<style>
+    h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #007BFF;
+    }
+
+    .form-label {
+        font-weight: 500;
+    }
+
+
+    .form-select {
+        padding: 0.3rem 1.2rem;
+    }
+
+    canvas {
+        max-width: 100%;
+    }
+</style>
+<div class="container py-4">
+
+    <h1 class="text-center mb-4">📡 TFG - IoT Dashboard</h1>
+
+    <div class="text-center mb-3">
+        <form id="modoForm" method="get" class="d-inline-block">
+            <label for="modoSelect" class="form-label me-2">Modo de visualización:</label>
+            <select name="modo" id="modoSelect" class="form-select d-inline-block w-auto" onchange="document.getElementById('modoForm').submit();">
+                <option value="real" {% if modo == 'real' %}selected{% endif %}>✅ Solo reales</option>
+                <option value="infectado" {% if modo == 'infectado' %}selected{% endif %}>❌ Solo infectados</option>
+                <option value="todo" {% if modo == 'todo' %}selected{% endif %}>🔁 Todos</option>
+            </select>
+        </form>
+    </div>
+
+    <p class="text-center text-sm text-gray-600 mb-4">
+        Archivo actual: <strong>{{ session['csv_aplicado'] }}</strong>
+    </p>
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">📈 Humedad (%)</h5>
+                    <canvas id="humidityChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">🌡️ Temperatura (°C)</h5>
+                    <canvas id="temperatureChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const labels = {{ ids | tojson }};
+    const temperatureData = {{ temperature | tojson }};
+    const humidityData = {{ humidity | tojson }};
+
+    new Chart(document.getElementById('humidityChart'), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Humedad (%)',
+                data: humidityData,
+                borderColor: 'blue',
+                fill: false,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    new Chart(document.getElementById('temperatureChart'), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Temperatura (°C)',
+                data: temperatureData,
+                borderColor: 'orange',
+                fill: false,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+</script>
+{% endblock %}
+
+
