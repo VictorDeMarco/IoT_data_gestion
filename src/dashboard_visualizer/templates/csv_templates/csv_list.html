@@ -69,5 +69,15 @@
       📊 Analizar fichero
     </a>
   </div>
-
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% for category, message in messages %}
+{% if category == 'error'%}
+<div class="flex justify-center mt-4">
+  <div class="px-4 py-2 bg-red-100 text-red-700 border border-red-300 text-center rounded">
+    {{ message }}
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endwith %}
 {% endblock %}

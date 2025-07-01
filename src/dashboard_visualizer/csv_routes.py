@@ -98,7 +98,8 @@ def eliminar_csv(nombre):
     nombre_usuario = session.get('nombre_usuario')
 
     if nombre == nombre_dataset:
-        path_archivo = os.path.join(CSV_DIR, nombre)
+        flash(f'"{nombre}" Es el archivo base y no puede ser eliminado.', 'error')
+        return redirect(url_for('csv_bp.listar_csv'))
     else:
         path_archivo = os.path.join(CSV_DIR,nombre_usuario, nombre)
 
@@ -127,6 +128,12 @@ def subir_csv():
 
     if not archivo.filename.endswith('.csv'):
         flash("Solo se permiten archivos con extensión .csv.", "formato_error")
+        return redirect(url_for(url))
+
+
+
+    if archivo.filename == 'webhook_dataset.csv':
+        flash("El archivo csv a subir no debe llamarse igual que el archivo base ", "formato_error")
         return redirect(url_for(url))
 
     try:

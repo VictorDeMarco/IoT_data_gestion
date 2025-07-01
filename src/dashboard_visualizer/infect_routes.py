@@ -8,7 +8,7 @@ import requests
 infect_bp = Blueprint('infect_bp', __name__)
 
 # Dirección del webhook (el receptor simulado del backend)
-TTN_ENDPOINT = "http://172.18.0.3:5000/ttn"
+TTN_ENDPOINT = "http://host.docker.internal:5000/ttn"
 
 # Ruta principal para manejar envío de paquetes simulados
 @infect_bp.route('/infectar', methods=['GET'])
@@ -81,7 +81,7 @@ def generar_paquete_aleatorio():
                 "occupied": random.choice([True, False]),
                 "button_pressed": random.choice([True, False]),
                 "tamper_detected": random.choice([True, False]),
-                "battery_voltage": round(random.uniform(2.0, 3.3), 2),
+                "battery_voltage": round(random.uniform(2.0, 3.3), 1),
                 "temperature_celsius": round(random.uniform(5, 45), 1),
                 "humidity_percent": random.randint(10, 85),
                 "time_since_last_event_min": random.randint(0, 60),

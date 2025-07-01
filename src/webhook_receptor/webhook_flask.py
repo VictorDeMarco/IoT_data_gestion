@@ -7,7 +7,7 @@ Autor: Víctor De Marco Velasco
 Fecha: 2025-05-19
 Versión: 1.0
 """
-
+from datetime import datetime
 from flask import Flask, request
 import csv
 import os
@@ -28,8 +28,6 @@ def evaluar_paquete(paquete_actual, paquete_anterior):
     Aplica reglas heurísticas para detectar si un paquete de datos es sospechoso o no.
      Devuelve True si es infectado y una lista de razones por lo que el cree que esta infectado.
     """
-    if paquete_anterior is None:
-        return False, ["No hay paquete anterior para comparar"]
 
     sospechoso = False
     sospechas = 0
@@ -39,46 +37,55 @@ def evaluar_paquete(paquete_actual, paquete_anterior):
     if paquete_actual['occupied'] == "True":
         sospechoso = True
 
-    # Heurística 2: event_count debe aumentar
-    if paquete_actual['event_count'] < paquete_anterior['event_count']:
-        sospechoso = True
-        razones.append("event_count no ha aumentado")
 
-    # Heurística 3: temperatura fuera de rango normal
+    # Heurística 2: temperatura fuera de rango normal
     temp = paquete_actual['temperature_celsius']
-    if not (0 <= temp <= 45):
-        razones.append("temperatura fuera del rango normal (0-45)")
-        sospechas += 1
-        if not (-10 <= temp <= 60):
-            sospechoso = True
-            razones.append("temperatura fuera del rango físico (-10 a 60)")
+    if not (0 <= temp <= 50):
+        sospechoso = True
+        razones.append("temperatura fuera del rango de detención")
 
-    # Heurística 4: humedad fuera de rango normal
+    # Heurística 3: humedad fuera de rango normal
     hum = paquete_actual['humidity_percent']
-    if not (30 <= hum <= 75):
-        razones.append("humedad fuera del rango normal (30-75)")
-        sospechas += 1
-        if not (0 <= hum <= 100):
-            sospechoso = True
-            razones.append("humedad fuera del rango físico (0-100)")
+    if not (0 <= hum <= 100):
+        sospechoso = True
+        razones.append("humedad fuera del rango físico (0-100)")
 
-    # Heurística 5: caída de batería sospechosa
-    delta_battery = abs(paquete_actual['battery_voltage'] - paquete_anterior['battery_voltage'])
-    if delta_battery > 0.11:
-        sospechas += 1
-        razones.append("diferencia de batería sospechosa (>0.11V)")
+    # Heurística 4: Valor del voltaje
+    if paquete_actual['battery_voltage'] < 2.4 or paquete_actual['battery_voltage'] > 3.0  :
+        sospechoso = True
+        razones.append("Voltaje fura del parametro establecido")
 
-    # Heurística 6: presencia detectada sin eventos recientes
+    # Heurística 5: presencia detectada sin eventos recientes
     tiempo = paquete_actual['time_since_last_event_min']
     tamper = paquete_actual['tamper_detected']
     if tamper == "True" and tiempo >= 2:
         sospechoso = True
         razones.append("presencia sin evento reciente (≥2 min)")
 
-    # Heurística final: múltiples sospechas acumuladas
-    if sospechas >= 2:
-        sospechoso = True
-        razones.append("acumulación de sospechas")
+
+    if (
+            float(paquete_actual['time_since_last_event_min']) >= 2 and
+            float(paquete_anterior['time_since_last_event_min']) >= 2 and
+            paquete_actual['tamper_detected'] == "False" and
+            paquete_anterior['tamper_detected'] == "False"
+    ):
+
+        try:
+            if paquete_actual['time_since_last_event_min'] < paquete_anterior['time_since_last_event_min']:
+                sospechoso = True
+                razones.append("time_since_last_event_min no ha aumentado ")
+
+            t_actual = datetime.fromisoformat(paquete_actual['timestamp'].replace("Z", "+00:00"))
+            t_anterior = datetime.fromisoformat(paquete_anterior['timestamp'].replace("Z", "+00:00"))
+            diferencia_min = abs((t_actual - t_anterior).total_seconds() / 60)
+
+            if  diferencia_min <= 59.9 or diferencia_min >= 60.1 :
+                sospechoso = True
+                razones.append("Diferencia horaria incorrecta")
+
+        except Exception as e:
+            razones.append(f"Error evaluando timestamps: {e}")
+
 
     return sospechoso, razones
 
@@ -98,6 +105,7 @@ def ttn_webhook():
 
         # Construcción del paquete actual
         nuevo = {
+            'timestamp': timestamp,
             'occupied': str(decoded.get('occupied', 'False')),
             'button_pressed': str(decoded.get('button_pressed', 'False')),
             'tamper_detected': str(decoded.get('tamper_detected', 'False')),
@@ -116,6 +124,7 @@ def ttn_webhook():
                 for row in reversed(rows):
                     if row.get('estado', '').lower() == 'real':
                         paquete_anterior = {
+                            'timestamp': row['timestamp'],
                             'occupied': str(row['occupied']),
                             'button_pressed': str(row['button_pressed']),
                             'tamper_detected': str(row['tamper_detected']),

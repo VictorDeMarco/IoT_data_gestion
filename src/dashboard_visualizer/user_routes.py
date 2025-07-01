@@ -25,7 +25,7 @@ def procesar_registro():
     nuevo_usuario.set_password(password)
     db.session.add(nuevo_usuario)
     db.session.commit()
-    return redirect(url_for('user_bp.login'))
+    return redirect(url_for('user_bp.mostrar_formulario_login'))
 
 # Ruta de inicio de sesión
 @user_bp.route('/login', methods=['GET'])
