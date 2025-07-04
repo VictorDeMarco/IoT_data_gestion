@@ -64,22 +64,19 @@ def evaluar_paquete(paquete_actual, paquete_anterior):
 
 
     if (
-            float(paquete_actual['time_since_last_event_min']) >= 2 and
-            float(paquete_anterior['time_since_last_event_min']) >= 2 and
             paquete_actual['tamper_detected'] == "False" and
             paquete_anterior['tamper_detected'] == "False"
     ):
 
         try:
-            if paquete_actual['time_since_last_event_min'] < paquete_anterior['time_since_last_event_min']:
-                sospechoso = True
-                razones.append("time_since_last_event_min no ha aumentado ")
 
             t_actual = datetime.fromisoformat(paquete_actual['timestamp'].replace("Z", "+00:00"))
             t_anterior = datetime.fromisoformat(paquete_anterior['timestamp'].replace("Z", "+00:00"))
             diferencia_min = abs((t_actual - t_anterior).total_seconds() / 60)
+            tolerancia = 2
+            resto = diferencia_min % 60
 
-            if  diferencia_min <= 59.9 or diferencia_min >= 60.1 :
+            if not  resto <= tolerancia or resto >= (60 - tolerancia) :
                 sospechoso = True
                 razones.append("Diferencia horaria incorrecta")
 
@@ -129,9 +126,9 @@ def ttn_webhook():
                             'button_pressed': str(row['button_pressed']),
                             'tamper_detected': str(row['tamper_detected']),
                             'battery_voltage': float(row['battery_voltage']),
-                            'temperature_celsius': float(row['temperature_celsius']),
-                            'humidity_percent': float(row['humidity_percent']),
-                            'time_since_last_event_min': float(row['time_since_last_event_min']),
+                            'temperature_celsius': int(row['temperature_celsius']),
+                            'humidity_percent': int(row['humidity_percent']),
+                            'time_since_last_event_min': int(row['time_since_last_event_min']),
                             'event_count': int(row['event_count'])
                         }
                         break
