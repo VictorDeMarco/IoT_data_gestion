@@ -12,9 +12,9 @@ import os
 from flask import Flask, render_template, request, session, flash
 from src.dashboard_visualizer.utils.paths import CSV_FILE_BASE, CSV_DIR
 from src.dashboard_visualizer.utils.user_model import db, Usuario
-from src.dashboard_visualizer.routes.user_routes import user_bp
-from src.dashboard_visualizer.routes.csv_routes import csv_bp
-from src.dashboard_visualizer.routes.infect_routes import infect_bp
+from src.dashboard_visualizer.user_routes import user_bp
+from src.dashboard_visualizer.csv_routes import csv_bp
+from src.dashboard_visualizer.infect_routes import infect_bp
 from src.dashboard_visualizer.utils.auth_utils import login_requerido
 
 
@@ -73,7 +73,7 @@ def dashboard():
 
     # Validar si el archivo existe
     if not os.path.exists(csv_path):
-        flash(f'Archivo "{nombre_csv}" no encontrado, usando uno por defecto.', 'error_dash')
+        flash(f'Archivo "{nombre_csv}" no encontrado, usando uno por defecto.', 'error')
         csv_path = CSV_FILE_BASE
 
     # Leer el CSV con pandas
@@ -102,14 +102,12 @@ def dashboard():
                            modo=modo)
 
 @app.errorhandler(404)
-@login_requerido
 def page_not_found(e):
     return render_template('common_templates/error.html', error_message="Página no encontrada (404)"), 404
 
 @app.errorhandler(500)
-@login_requerido
 def internal_error(e):
     return render_template('common_templates/error.html', error_message="Error interno del servidor (500)"), 500
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', port=5001)
+    app.run(debug=True, host='0.0.0.0', port=5001)

@@ -71,56 +71,34 @@ Una vez observados los cálculos pretender sacar rédito económico del proyecto
 \subsection{Viabilidad legal}
 Para poder determinar si un proyecto es viable legalmente se deben revisar las licencias utilizadas durante el proyecto y determinar si hay alguna barrera legal que impida el desarrollo y uso del proyecto.
 
+\subsubsection{Marco legal}
 
-\subsubsection{Protección de Datos}
-
-El proyecto desarrollado recoge datos procedentes de un sensor IoT que, si bien no identifican directamente a personas, podrían considerarse datos personales en determinadas circunstancias si permiten inferir comportamientos (por ejemplo, detección de presencia o hábitos). Por eso mismo en caso de ampliarse el uso de esta solución en entornos reales con usuarios, sería necesario cumplir con los reglamentos y leyes referentes a la protección de datos del lugar donde se fuera a usar:
-
+El proyecto se desarrolla en España, por lo que hay que cumplir con las siguientes normativas:
 
 \begin{itemize}
-    \item Garantizar que la procedencia de los datos sea anónima.
-     \item Limitar el almacenamiento y uso a los fines autorizados.
-     \item Disponer de medidas de seguridad técnicas y organizativas para proteger los datos.
+    \item Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas (RGPD).
+    \item Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).
+    \item Ley de Propiedad Intelectual (Real Decreto Legislativo 1/1996, de 12 de abril).
+    \item Licencias de uso de software libre y de terceros (MIT, GPL, etc.).
 \end{itemize}
 
+\subsubsection{Protección de datos personales}
 
-Además, si el usuario utiliza las funciones referentes a la recepción de paquetes enviados desde un servidor web, se expone a estar conectado a la red pudiendo comprometer su privacidad.
-
-
+El proyecto en ningún momento recoge datos personales de ningún tipo ya que los únicos datos procesados corresponden a lecturas del sensor IoT ubicado en mi domicilio.
+Por tanto, no existe tratamiento de datos personales según el RGPD.
 
 \subsubsection{Licencias y uso de software}
 
 El proyecto utiliza las siguientes tecnologías software:
 
-\begin{table}[H]
-\centering
-\begin{tabular}{|l|c|l|}
-\hline
-\textbf{Herramienta} & \textbf{Versión} & \textbf{Licencia} \\
-\hline
-Python & 3.11.0 & PSF \\
-Flask & 2.3 & BSD-3-Clause \\
-Pandas & 2.3.0 & BSD-3-Clause \\
-SQLAlchemy & 2.0.41 & MIT \\
-Werkzeug & 2.3 & BSD-3-Clause \\
-Requests & 2.32.4 & Apache 2.0 \\
-Pytz & 2025.2 & MIT \\
-mlxtend & 0.23.4 & BSD-3-Clause \\
-IntelliJ IDEA & 2024.3,6 & Apache 2.0 \\
-Docker & 28.0.4 & Apache 2.0 \\
-Docker Desktop & 4.40.0 & Propietaria \\
-Git & 2.45.1 & GPLv2 \\
-GitHub & N/A & Propietaria \\
-Overleaf & N/A & Propietaria \\
-Draw.io & 27.2.0 & Apache 2.0 \\
-HTML & 5 & BSD 3-Clause \\
-Bootstrap 5 & 5.3.0 & MIT \\
-Chart.js & 4.5.0 & MIT \\
-\hline
-\end{tabular}
-\caption{Licencias de herramientas utilizadas en el proyecto}
-\end{table}
-
+\begin{itemize}
+    \item \textbf{Windows 11}: sistema operativo bajo licencia instalada en el equipo de desarrollo.
+    \item \textbf{IntelliJ IDEA}: utilizado en su versión Community Edition, que se distribuye bajo licencia Apache 2.0.
+    \item \textbf{Python y Flask}: ambos distribuidos bajo licencias permisivas (Python Software Foundation License y BSD, respectivamente).
+    \item \textbf{Cloudflared Tunnel}: herramienta libre para crear túneles seguros, distribuida bajo licencia Apache 2.0.
+    \item \textbf{The Things Network (TTN)}: plataforma en la nube gratuita para LoRaWAN, utilizada según sus condiciones de uso.
+    \item \textbf{Dominio web}: contratado para uso exclusivo del proyecto durante un año.
+\end{itemize}
 
 Todos los recursos software utilizados permiten su uso académico sin restricción y se respetan las licencias correspondientes.
 

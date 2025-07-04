@@ -1,7 +1,7 @@
 import pandas as pd
 from mlxtend.frequent_patterns import apriori, association_rules
 
-df = pd.read_csv("csv_rules/Dataset_con_solo_reales.csv")
+df = pd.read_csv("csv/Dataset_con_solo_reales.csv")
 
 
 # Discretizar variables para reglas de asociación (formato tipo cesta)
@@ -24,11 +24,11 @@ frequent_itemsets = apriori(df_binarized, min_support=0.15, use_colnames=True)
 rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.9)
 
 # Mostrar reglas encontradas
-print(" Reglas con confianza >= 0.9:")
+print("🔍 Reglas con confianza >= 0.9:")
 print(rules[["antecedents", "consequents", "support", "confidence", "lift"]])
 
 # Generar funciones Python a partir de las reglas
-print("\n Traducción de reglas a condiciones Python:")
+print("\n📜 Traducción de reglas a condiciones Python:")
 for idx, row in rules.iterrows():
     ante = [f'd["{a}"] == True' for a in row["antecedents"]]
     cons = [f'd["{c}"] == True' for c in row["consequents"]]

@@ -7,6 +7,7 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-12T23:10:16Z,False,False,True,2.4,26,46,0,743,real
 2025-06-12T23:24:04Z,False,False,True,2.4,26,46,0,745,real
 2025-06-13T00:09:50Z,False,False,False,2.4,26,47,46,745,real
+2025-06-13T01:09:50Z,False,False,False,2.4,26,48,24,791,real
 2025-06-13T01:49:06Z,False,False,True,2.5,26,48,0,796,real
 2025-06-13T01:49:06Z,False,False,True,2.5,48,26,0,796,infectado
 2025-06-13T01:50:23Z,False,False,True,2.4,,,0,801,infectado
@@ -22,6 +23,7 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-13T03:09:50Z,False,False,False,2.5,24,49,71,814,real
 2025-06-13T04:09:50Z,False,False,False,2.5,24,49,131,814,real
 2025-06-13T05:09:50Z,False,False,False,2.5,24,49,191,814,real
+2025-06-13T06:09:50Z,False,False,False,2.5,24,49,8,815,real
 2025-06-13T10:09:50Z,False,False,False,2.4,26,43,0,945,real
 2025-06-13T10:10:55Z,False,False,True,2.4,26,43,0,953,real
 2025-06-13T10:11:40Z,False,False,True,2.4,26,44,0,958,real
@@ -157,6 +159,7 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-14T22:09:51Z,False,False,False,2.5,24,54,76,2496,real
 2025-06-14T22:11:03Z,False,False,True,2.4,24,54,0,2497,real
 2025-06-14T23:09:51Z,False,False,False,2.4,25,51,13,2512,real
+2025-06-15T00:09:51Z,False,False,False,2.4,25,51,5,2521,real
 2025-06-15T13:07:49Z,False,False,True,2.4,25,52,0,2899,real
 2025-06-15T13:09:51Z,False,False,False,2.4,23,50,1,2904,real
 2025-06-15T13:11:44Z,False,False,True,2.4,22,53,0,2906,real
@@ -309,9 +312,3 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-07-01T01:10:03Z,False,False,False,2.4,26,47,16,15140,real
 2025-07-01T02:10:03Z,False,False,False,2.4,26,47,0,15183,real
 2025-07-01T03:10:03Z,False,False,False,2.4,25,47,0,15539,real
-2025-07-01T18:36:39Z,False,False,True,2.4,29,38,0,16565,real
-2025-07-01T19:10:03Z,False,False,False,2.4,28,38,33,16565,real
-2025-07-03T10:41:40Z,False,False,False,3.2,31,-3,42,13922,infectado
-2025-07-04T05:19:25Z,False,False,True,2.4,25,55,0,16755,real
-2025-07-04T09:54:11Z,True,True,False,2.6,59,84,23,4026,infectado
-

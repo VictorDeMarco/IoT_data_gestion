@@ -1,69 +1,8 @@
 \apendice{Documentación técnica de programación}
 
 \section{Introducción}
-En este apartado se va a explicar todo lo relacionado con el código desarrollado durante el proyecto. Desde la estructura de directorios y archivos que componen el proyecto, hasta los pasos necesarios para  compilar, instalar y ejecutar el proyecto de diferentes formas.
+
 \section{Estructura de directorios}
-Todo el codigo relacionado con el proyecto se encuentra en un repositorio publico de
-GitHub\footnote{\href{http://github.com/VictorDeMarco/IoT_data_gestion}{http://github.com/VictorDeMarco/IoT\_data\_gestion}}. 
-
-A continuación, se va a mostrar la estructura de directorios y archivos que se pueden encontrar en el repositorio del proyecto:
-
-
-\begin{itemize}
-    \item \textbf{examples}: directorio que contiene archivos csv de ejemplo para probar las distintas funcionalidades del proyecto.
-   \item \textbf{docs}: directorio que contiene los archivos referentes a la documentación del proyecto:
-   \begin{itemize}
-       \item \textbf{anexo}: directorio que contiene los archivos referentes a los anexos del proyecto.
-       \item \textbf{memoria}: Directorio que contiene los archivos referentes a la memoria del proyecto.
-       \item \textbf{videos}: Directorio que contiene videos explicativos sobre el proyecto.
-   \end{itemize}
-    \item \textbf{src}: directorio que contiene los archivos referentes al código fuente del proyecto:
-    \begin{itemize}
-       \item \textbf{csv}: directorio donde se almacenan todos los ficheros csv utilizados por el proyecto,en este directorio también se crean las carpetas personales de cada usuario que utiliza la aplicación dashboard.
-       \item \textbf{dashboard\_visualizer}: directorio principal de la aplicación de visualización y gestión de archivos csv.
-       \item \textbf{webhook\_receptor}: directorio principal de la aplicación de recepción, análisis y almacenamiento de datos  enviados por sensores IoT.
-   \end{itemize}
-   
-   \item \textbf{docker}: directorio que contiene los archivos necesarios para ejecutar el proyecto en un contenedor docker.
-
-   \item \textbf{.gitignore}: archivo de configuración de Git que contiene los elementos a omitir en el control de versiones.
-
-   \item \textbf{README.md}: archivo de presentación del proyecto donde se resume en que consiste el proyecto y diversos puntos importantes del mismo.
-   
-\end{itemize}
-
-Dentro del directorio \textbf{docker} se encuentran los siguientes archivos:
-
-\begin{itemize}
-    \item \textbf{docker-compose.yml}: archivo de configuración que permite configurar y ejecutar múltiples contenedores Docker como un solo proyecto.
-    \item \textbf{Dockerfile}: archivo necesario para desplegar el proyecto en un contenedor Docker.
-    \item \textbf{requirements.txt}: archivo que contiene las bibliotecas necesarias para ejecutar correctamente el proyecto.
-\end{itemize}
-
-Dentro del directorio \textbf{src/dashboard\_visualizer} se encuentran los siguientes archivos y directorios:
-
-\begin{itemize}
-    \item \textbf{instance}: directorio donde se guarda la instancia de la base de datos encargada de gestionar los usuarios de la aplicación.
-    \item \textbf{routes}: directorio que contiene los archivos de código con las funcionalidades de la aplicación.
-    \item \textbf{templates}: directorio que contiene todas las plantillas de las distintas vistas de la aplicación.
-    \item \textbf{utils}: directorio que contiene utilidades secundarias para el funcionamiento de la aplicación.
-    \item \textbf{dashboard\_flask.py}: archivo principal de la aplicación encargado de iniciar la misma.
-\end{itemize}
-
-Dentro del directorio \textbf{src/webhook\_receptor} se encuentran los siguientes archivos y directorios:
-
-\begin{itemize}
-    \item \textbf{rules}: directorio donde se guarda un pequeño scrypt encargado de la generación de reglas de asociación.
-    \item \textbf{webhook\_flask.py}: archivo principal de la aplicación encargado de iniciar la misma y de todas sus funcionalidades, como recibir y analizar datos.
-\end{itemize}
-
-Dentro del directorio \textbf{src/webhook\_receptor/rules} se encuentran los siguientes archivos y directorios:
-\begin{itemize}
-    \item \textbf{rules.py}: archivo principal con el scrypt encargado de generar las reglas.
-    \item \textbf{csv\_rules}: directorio donde se guarda el archivo csv con solo datos reales del sensor IoT, utilizado para generar las reglas de asociación.
-\end{itemize}
-
-
 
 \section{Manual del programador}
 

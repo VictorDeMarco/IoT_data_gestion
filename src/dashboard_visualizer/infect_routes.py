@@ -82,8 +82,8 @@ def generar_paquete_aleatorio():
                 "button_pressed": random.choice([True, False]),
                 "tamper_detected": random.choice([True, False]),
                 "battery_voltage": round(random.uniform(2.0, 3.3), 1),
-                "temperature_celsius": random.randint(-10, 60),
-                "humidity_percent": random.randint(-10, 110),
+                "temperature_celsius": round(random.uniform(5, 45), 1),
+                "humidity_percent": random.randint(10, 85),
                 "time_since_last_event_min": random.randint(0, 60),
                 "event_count": random.randint(1000, 20000),
             }

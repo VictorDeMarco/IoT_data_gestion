@@ -5,26 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55ebc677-1e17-4c70-8019-9d304d11b226" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/examples/ej1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/ej2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/ej3.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/ej4.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/webhook_receptor/rules/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/webhook_receptor/rules/csv/Dataset_con_solo_reales.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/webhook_receptor/rules/rules.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docker/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/csv/Galletas/probo_analizado.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/csv/Mota/probo_analizado.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/csv/admin/probo_analizado.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/anexos.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/anexos.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bibliografia.bib" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bibliografia.bib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bibliografiaAnexos.bib" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bibliografiaAnexos.bib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/img/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/memoria.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/memoria.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/1_Introduccion.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/1_Introduccion.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/2_Objetivos_del_proyecto.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/2_Objetivos_del_proyecto.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/3_Conceptos_teoricos.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/3_Conceptos_teoricos.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/4_Tecnicas_y_herramientas.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/4_Tecnicas_y_herramientas.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/5_Aspectos_relevantes_del_desarrollo_del_proyecto.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/5_Aspectos_relevantes_del_desarrollo_del_proyecto.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/6_Trabajos_relacionados.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/6_Trabajos_relacionados.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/7_Conclusiones_Lineas_de_trabajo_futuras.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/7_Conclusiones_Lineas_de_trabajo_futuras.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/A_Plan_proyecto.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/A_Plan_proyecto.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/B_Requisitos.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/B_Requisitos.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/C_Diseno.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/C_Diseno.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/D_Manual_programador.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/D_Manual_programador.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/E_Manual_usuario.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/E_Manual_usuario.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/F_ODS.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/F_ODS.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tex/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tex/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/csv/admin/probo_analizado_analizado.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/csv/webhook_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/csv/webhook_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dashboard_visualizer/csv_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/routes/csv_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dashboard_visualizer/dashboard_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/dashboard_flask.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dashboard_visualizer/infect_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/routes/infect_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dashboard_visualizer/templates/common_templates/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/common_templates/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dashboard_visualizer/user_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/routes/user_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webhook_receptor/rules/csv/Dataset_con_solo_reales.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/webhook_receptor/rules/csv_rules/Dataset_con_solo_reales.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webhook_receptor/rules/rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/webhook_receptor/rules/rules.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard_visualizer/csv_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/csv_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard_visualizer/infect_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/infect_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard_visualizer/templates/csv_templates/csv_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/templates/csv_templates/csv_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dashboard_visualizer/user_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dashboard_visualizer/user_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/webhook_receptor/webhook_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/webhook_receptor/webhook_flask.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,43 +89,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Docker.Docker/Dockerfile.executor": "Run",
-    "Docker.Docker: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Python.dashboard_flask.executor": "Run",
-    "Python.rules.executor": "Run",
-    "Python.webhook_flask.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Usuario/Documents/TFG-VDV/src/webhook_receptor/rules/csv",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "advanced.settings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dashboard_flask.executor&quot;: &quot;Run&quot;,
+    &quot;Python.rules.executor&quot;: &quot;Run&quot;,
+    &quot;Python.webhook_flask.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Usuario/Documents/TFG-VDV/src/webhook_receptor/rules/csv&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\webhook_receptor\rules\csv" />
       <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\python\csv" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Usuario\Documents\TFG-VDV\Docker" />
-      <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\dashboard_visualizer\routes" />
       <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\dashboard_visualizer\static" />
       <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\dashboard_visualizer\utils" />
       <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\dashboard_visualizer" />
+      <recent name="C:\Users\Usuario\Documents\TFG-VDV\src\dashboard_visualizer\utils\model" />
+      <recent name="C:\Users\Usuario\Documents\TFG-VDV\src" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -150,10 +157,6 @@
       <workItem from="1751040723070" duration="11728000" />
       <workItem from="1751250506268" duration="7757000" />
       <workItem from="1751314232677" duration="15990000" />
-      <workItem from="1751369119221" duration="11214000" />
-      <workItem from="1751479681166" duration="1234000" />
-      <workItem from="1751533342413" duration="6149000" />
-      <workItem from="1751605519439" duration="16702000" />
     </task>
     <servers />
   </component>
