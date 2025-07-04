@@ -32,49 +32,85 @@ En este apartado se describen los objetivos generales del proyecto, los requisit
 %\end{table}
 %
 \section{Objetivos generales}
-\begin{enumerate}
 
-    \item Obtener datos ambientales (temperatura, humedad y detección de movimiento) desde sensores LoRaWAN instalados en el entorno doméstico.
-    \item Transmitir dichos datos obtenidos a través de un gateway Dragino hacia la red The Things Network (TTN).
-     \item Recibir los datos enviados por TTN mediante un webhook HTTP a través de una aplicación web desarrollada en Python (Flask) y alamacenar los datos recibidos en un fichero CSV estructurado para su posterior análisis.
-    \item Procesar y visualizar los datos mediante una aplicación web desarrollada con Python y Flask.
+
+\begin{itemize}
+    \item Diseñar e implementar una solución completa que permite recoger, analizar, almacenar y visualizar los datos generados por un dispositivo IoT conectado a una red LoRaWAN.
+    \item Proporcionar a usuarios no técnicos una interfaz web intuitiva desde la que puedan interactuar con los datos, analizar su contenido y detectar posibles anomalías.
+\end{itemize}
     
 
-\end{enumerate}
+
 \section{Catálogo de requisitos}
 Una vez claros los objetivos generales del proyecto podemos definir los requisitos del mismo:
 \subsubsection{Requisitos funcionales}
 
 \begin{itemize}
-    \item \textbf{RF1-Recopilación de datos}: El sistema debe recoger datos de temperatura, humedad y detección de movimiento desde sensores LoRaWAN.
-    \item \textbf{RF2-Reconducir la información}: 
+    \item \textbf{RF-1 Recepción de datos}: El sistema debe ser capaz de recoger, analizar y almacenar los datos recibidos:
     \begin{itemize}
-    \item \textbf{RF2.1}:El gateway Dragino debe reenviar los datos recogidos hacia la red The Things Network (TTN).
-    \item \textbf{RF2.2}: Los datos recogidos deben ser transformados gracias a un payload formatter configurado.
-    \item \textbf{RF2.3}: La aplicación Flask debe recibir peticiones POST desde TTN mediante un webhook HTTP.
+        \item \textbf{RF-1.1 Recoger datos}: Recibir automáticamente los paquetes enviados por el dispositivo IoT a través de la red LoRaWAN y el webhook configurado.
+        \item \textbf{RF-1.2 Analizar datos}: Evaluar los datos recibidos mediante reglas heurísticas y reglas de asociación para determinar si son reales.
+        \item \textbf{RF-1.3 Almacenar datos}: Guardar los datos analizados en un archivo CSV que actúa como dataset principal.
     \end{itemize}
-    \item \textbf{RF3-Almacenamiento de datos}:
+
+    \item \textbf{RF-2 Visualización de gráficas}: El usuario debe poder ver las gráficas correspondientes a los datos almacenados:
     \begin{itemize}
-    \item \textbf{RF3.1}: La aplicación web encargada de recibir los datos verifica la existencia de un fichero csv con el formato correcto para almacenar nuestros datos.
-    \item \textbf{RF3.2}: La aplicación web comprueba que los datos que recibe son procesables y notifica al usuario si hay algún error o si todo va según lo previsto. 
-    \item \textbf{RF3.3}: La aplicación web añade el paquete recibido en la ultima fila del fichero csv.
+        \item \textbf{RF-2.1 Elegir modo de visualización}: Permitir al usuario seleccionar si que tipo de datos desea visualizar en las gráficas, si solo los datos reales, solo los datos infectados o todos los datos juntos.
+        \item \textbf{RF-2.2 Interacción con las gráficas}: Mostrar gráficas interactivas que permiten al usuario ocultar el contenido de la gráfica o ver el valor correspondiente a un punto de la gráfica.
     \end{itemize}
-    \item \textbf{RF4-Visualización web}:
+
+    \item \textbf{RF-3 Gestión de archivos}: El usuario debe poder interactuar de diferentes formas con los archivos almacenados:
     \begin{itemize}
-    \item \textbf{RF4.1}: La aplicación web realiza una diferenciación entre los datos recopilados reales y los datos infectados.
-    \item \textbf{RF4.2}: La aplicación web muestra las gráficas correspondientes a los datos reales recopilados.
-    \item \textbf{RF4.3}: La aplicación web permite al usuario navegar entre las distintas opciones de datos (reales, infectados, todos).
+        \item \textbf{RF-3.1 Ver contenido}: Permitir la visualización del contenido de cada archivo CSV.
+        \item \textbf{RF-3.2 Aplicar archivo}: Activar un archivo específico para que se visualice su contenido en las gráficas.
+        \item \textbf{RF-3.3 Eliminar archivo}: Borrar un archivo CSV del sistema de almacenamiento del usuario.
+        \item \textbf{RF-3.4 Descargar archivo}: Permitir al usuario descargar cualquier archivo CSV que haya subido o generado.
     \end{itemize}
+
+    \item \textbf{RF-4 Cargar archivos}: El usuario debe ser capaz de añadir nuevos ficheros a la aplicación:
+    \begin{itemize}
+        \item \textbf{RF-4.1 Cargar fichero}: Subir archivos CSV que cumplan con la estructura esperada por la aplicación.
+        \item \textbf{RF-4.2 Analizar fichero}: Procesar automáticamente los datos del archivo cargado para analizar su contenido y otorgar a cada fila de datos el atributo estado.
+    \end{itemize}
+
+    \item \textbf{RF-5 Simulación de envío de datos}: El usuario debe tener la opción de enviar datos al dataset:
+    \begin{itemize}
+        \item \textbf{RF-5.1 Envío de datos manual}: Rellenar un formulario web para generar un paquete con valores personalizados.
+        \item \textbf{RF-5.2 Envío de datos aleatorio}: Generar y enviar automáticamente un paquete simulado con valores aleatorios.
+    \end{itemize}
+
+    \item \textbf{RF-6 Gestión de usuarios}: El usuario debe ser capaz de tener su propia cuenta para gestionar sus datos de forma aislada:
+    \begin{itemize}
+        \item \textbf{RF-6.1 Registrar usuario}: El usuario debe  poder registrar una nueva cuenta proporcionando un usuario y contraseña permitidos.
+        \item \textbf{RF-6.2 Inicio de sesión}: El usuario debe poder iniciar sesión en el sistema con sus credenciales.
+        \item \textbf{RF-6.3 Recuperar contraseña}: El usuario debe poder restablecer su contraseña en caso de olvido.
+        \item \textbf{RF-6.4 Cierre de sesión}: El usuario debe poder cerrar su sesión de forma segura.
+    \end{itemize}
+ 
 \end{itemize}
+
+
+
+
 \subsubsection{Requisitos no funcionales}
 
 \begin{itemize}
-    \item \textbf{RNF1-Rendimiento}: El sistema debe estar disponible siempre que el usuario lo requiera y tener un bajo tiempo de respuesta.
-    \item \textbf{RNF2-Seguridad}: El túnel expuesto mediante Cloudflare debe permitir comunicación segura entre TTN y el servidor local, sin suponer un problema de seguridad para los usuarios.
-    \item \textbf{RNF3-Usabilidad}: El fichero CSV debe tener una estructura homogénea y legible para permitir su análisis posterior y su fácil utilización si el usuario necesitara manipularlo.
-    \item \textbf{RNF4-Compatibilidad}: El sistema debe funcionar correctamente desde los distintos navegadores web mas populares.
-    \item \textbf{RNF5-Mantenimiento}: El programa debe tener una estructura limpia y clara para facilitar el mantenimiento y añadir mas funciones a futuro.
+    \item \textbf{RNF-1 Usabilidad}: La interfaz web debe ser intuitiva y fácil de usar por usuarios sin conocimientos técnicos.
+
+    \item \textbf{RNF-2 Rendimiento}: El tiempo de respuesta del sistema para las acciones comunes (como visualizar gráficas o subir archivos)debe ser razonable.
+
+    \item \textbf{RNF-3 Compatibilidad}: El sistema debe ser compatible con los principales navegadores modernos.
+
+    \item \textbf{RNF-4 Seguridad}: Cada usuario debe tener acceso únicamente a sus propios archivos. La gestión de cuentas debe estar protegida mediante autenticación básica (usuario y contraseña).
+
+    \item \textbf{RNF-5 Portabilidad}: El sistema debe estar preparado para ejecutarse dentro de contenedores Docker para facilitar su despliegue en diferentes entornos.
+
+    \item \textbf{RNF-6 Mantenibilidad}: El código fuente debe estar organizado y documentado para permitir su mantenimiento y evolución. Además, debe estar controlado mediante un sistema de versiones.
+
+    \item \textbf{RNF-7 Escalabilidad básica}: Aunque el sistema está diseñado para un entorno local o pequeño, debe poder ampliarse en el futuro para aceptar nuevos sensores o reglas de análisis.
+
 \end{itemize}
+
 \section{Especificación de requisitos}
 En este apartado se especifican los distintos casos de uso de nuestro proyecto:
 
@@ -82,97 +118,189 @@ En este apartado se especifican los distintos casos de uso de nuestro proyecto:
 	\centering
 	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
 		\toprule
-		\textbf{CU-1}    & Recopilar datos desde sensores LoRaWAN \\
+		\textbf{CU-1}    & Recepción y almacenamiento de datos \\
 		\toprule
 		\textbf{Versión}              & 1.0 \\
 		\textbf{Autor}                & Víctor De Marco Velasco \\
-		\textbf{Requisitos asociados} & RF1 \\
-		\textbf{Descripción}          & El sistema recibe datos ambientales (temperatura, humedad y detección de movimiento) a través de sensores LoRaWAN instalados en un entorno doméstico. \\
-		\textbf{Precondición}         & El sensor debe estar encendido y correctamente enlazado con el gateway LoRaWAN. \\
+		\textbf{Requisitos asociados} & RF-1.1, RF-1.2, RF-1.3 \\
+		\textbf{Descripción}          & El sistema recibe automáticamente paquetes enviados por el sensor IoT, los analiza mediante reglas heurísticas y los almacena en un archivo CSV. \\
+		\textbf{Precondición}         & El sensor debe estar configurado y transmitiendo datos a través de LoRaWAN y TTN. El webhook debe estar activo. \\
 		\textbf{Acciones}             &
 		\begin{enumerate}
-			\item El sensor realiza una medición periódica.
-			\item El sensor transmite los datos al gateway Dragino.
+			\item El sensor IoT envía un paquete a TTN.
+			\item TTN reenvía el paquete al webhook configurado.
+			\item El servidor Flask recibe el paquete.
+			\item El sistema analiza los datos con reglas heurísticas y de asociación.
+			\item El paquete se clasifica como real o infectado.
+			\item El paquete se guarda en un archivo CSV local.
 		\end{enumerate}\\
-		\textbf{Postcondición}        & El gateway recibe el paquete con los datos del sensor. \\
-		\textbf{Excepciones}          & El sensor no transmite por fallo de batería o conectividad. \\
+		\textbf{Postcondición}        & El archivo CSV es actualizado con una nueva fila correspondiente al paquete recibido y analizado. \\
+		\textbf{Excepciones}          & Error en la conexión TTN o en el webhook. Paquete malformado. Problemas de almacenamiento en disco. \\
 		\textbf{Importancia}          & Alta \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-1 Recopilar datos desde sensores LoRaWAN}
+	\caption{CU-1 Recepción y almacenamiento de datos.}
 \end{table}
+
 \begin{table}[p]
 	\centering
 	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
 		\toprule
-		\textbf{CU-2}    & Reenviar y transformar datos mediante TTN \\
+		\textbf{CU-2}    & Visualización de gráficas \\
 		\toprule
 		\textbf{Versión}              & 1.0 \\
 		\textbf{Autor}                & Víctor De Marco Velasco \\
-		\textbf{Requisitos asociados} & RF2.1, RF2.2, RF2.3 \\
-		\textbf{Descripción}          & El gateway envía los datos a la red TTN, donde son decodificados mediante un payload formatter y redirigidos a la aplicación Flask mediante webhook. \\
-		\textbf{Precondición}         & El gateway debe estar conectado a Internet y configurado correctamente en TTN. \\
+		\textbf{Requisitos asociados} & RF-2.1, RF-2.2, RF-6.2 \\
+		\textbf{Descripción}          & El usuario visualiza datos de temperatura y humedad en gráficas interactivas a partir de los archivos CSV almacenados. \\
+		\textbf{Precondición}         & El usuario debe estar autentificado. \\
 		\textbf{Acciones}             &
 		\begin{enumerate}
-			\item El gateway Dragino reenvía los datos al servidor TTN.
-			\item TTN aplica el payload formatter para decodificar los datos.
-			\item TTN envía los datos a la aplicación Flask a través del webhook HTTP.
+			\item El usuario accede a la sección de gráficas.
+			\item Selecciona el tipo de datos (reales, infectados o todos).
+			\item El sistema genera las gráficas correspondientes.
+			\item El usuario puede interactuar con las gráficas: ocultarlas , ver valores exactos, etc.
 		\end{enumerate}\\
-		\textbf{Postcondición}        & La aplicación Flask recibe un POST con los datos decodificados. \\
-		\textbf{Excepciones}          & Fallo de red, error en el payload formatter o caída del túnel. \\
+		\textbf{Postcondición}        & Las gráficas se muestran en pantalla correctamente. \\
+		\textbf{Excepciones}          & Archivo inválido o sin datos. Error en la carga del gráfico. \\
 		\textbf{Importancia}          & Alta \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-2 Reenviar y transformar datos mediante TTN}
+	\caption{CU-2 Visualización de gráficas.}
 \end{table}
+
 \begin{table}[p]
 	\centering
 	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
 		\toprule
-		\textbf{CU-3}    & Almacenar datos en archivo CSV \\
+		\textbf{CU-3}    & Gestión de archivos CSV \\
 		\toprule
 		\textbf{Versión}              & 1.0 \\
 		\textbf{Autor}                & Víctor De Marco Velasco \\
-		\textbf{Requisitos asociados} & RF3.1, RF3.2, RF3.3 \\
-		\textbf{Descripción}          & La aplicación Flask verifica el CSV de almacenamiento, comprueba los datos recibidos y los añade correctamente como nueva fila. \\
-		\textbf{Precondición}         & El webhook ha entregado correctamente los datos. \\
+		\textbf{Requisitos asociados} & RF-3.1, RF-3.2, RF-3.3, RF-3.4, RF-6.2 \\
+		\textbf{Descripción}          & El usuario puede ver, activar, eliminar o descargar los archivos CSV que están asociados a su cuenta. \\
+		\textbf{Precondición}         & El usuario debe haber iniciado sesión correctamente y debe tener archivos disponibles. \\
 		\textbf{Acciones}             &
 		\begin{enumerate}
-			\item La aplicación verifica si el archivo CSV existe y contiene las cabeceras.
-			\item Valida que el contenido recibido sea procesable.
-			\item Añade una nueva fila con los datos recibidos.
-			\item Informa si ha habido un error o se ha completado la operación correctamente.
+			\item El usuario accede al panel de archivos.
+			\item Visualiza la lista de archivos disponibles.
+			\item Selecciona un archivo para:
+			\begin{itemize}
+				\item Ver su contenido en tabla.
+				\item Aplicarlo para las gráficas.
+				\item Eliminarlo definitivamente.
+				\item Descargarlo localmente.
+			\end{itemize}
 		\end{enumerate}\\
-		\textbf{Postcondición}        & El CSV contiene una nueva fila de datos válidos. \\
-		\textbf{Excepciones}          & Formato incorrecto del payload, error de escritura, archivo dañado. \\
+		\textbf{Postcondición}        & El sistema actualiza el estado del archivo según la acción seleccionada. \\
+		\textbf{Excepciones}          & Archivo inexistente, error al acceder al almacenamiento o permisos incorrectos. \\
 		\textbf{Importancia}          & Alta \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-3 Almacenar datos en archivo CSV}
+	\caption{CU-3 Gestión de archivos CSV.}
 \end{table}
+
 \begin{table}[p]
 	\centering
 	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
 		\toprule
-		\textbf{CU-4}    & Visualizar datos en la aplicación web \\
+		\textbf{CU-4}    & Carga de archivos CSV \\
 		\toprule
 		\textbf{Versión}              & 1.0 \\
 		\textbf{Autor}                & Víctor De Marco Velasco \\
-		\textbf{Requisitos asociados} & RF4.1, RF4.2, RF4.3 \\
-		\textbf{Descripción}          & El usuario puede acceder a una interfaz web para consultar los datos recogidos en formato visual y filtrarlos por tipo. \\
-		\textbf{Precondición}         & El archivo CSV contiene datos válidos. \\
+		\textbf{Requisitos asociados} & RF-4.1,RF-6.2 \\
+		\textbf{Descripción}          & El usuario sube un archivo CSV y el sistema lo almacena en su lista personal". \\
+		\textbf{Precondición}         & El usuario debe haber iniciado sesión. El archivo debe cumplir con el formato requerido. \\
 		\textbf{Acciones}             &
 		\begin{enumerate}
-			\item El usuario accede a la aplicación web.
-			\item Selecciona el tipo de datos a visualizar (reales, infectados, todos).
-			\item La aplicación carga los datos desde el CSV.
-			\item Se muestran las gráficas o tablas correspondientes.
+			\item El usuario accede a la sección de carga.
+			\item Selecciona o arrastra un archivo .csv.
+			\item El sistema valida el archivo.
+			\item El archivo queda almacenado en su cuenta.
 		\end{enumerate}\\
-		\textbf{Postcondición}        & El usuario visualiza los datos filtrados correctamente. \\
-		\textbf{Excepciones}          & El CSV está corrupto o no se puede leer, o hay error en los filtros. \\
+		\textbf{Postcondición}        & El archivo queda almacenado y disponible para ser utilizado por el usuario. \\
+		\textbf{Excepciones}          & Formato incorrecto o archivo corrupto. \\
+		\textbf{Importancia}          & Alta \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-4 Carga de archivos CSV.}
+\end{table}
+
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-5}    & Análisis de archivos CSV \\
+		\toprule
+		\textbf{Versión}              & 1.0 \\
+		\textbf{Autor}                & Víctor De Marco Velasco \\
+		\textbf{Requisitos asociados} & RF-4.2,RF-6.2 \\
+		\textbf{Descripción}          & El usuario sube un archivo CSV, el sistema lo analiza añadiendo la columna estado y luego lo almacena en su lista personal". \\
+		\textbf{Precondición}         & El usuario debe haber iniciado sesión. El archivo debe cumplir con el formato requerido. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\item El usuario accede a la sección de carga.
+			\item Selecciona o arrastra un archivo .csv.
+			\item El sistema valida el archivo.
+            \item El sistema analiza los datos y genera la columna “estado”.
+			\item El archivo queda almacenado en su cuenta.
+		\end{enumerate}\\
+		\textbf{Postcondición}        & El archivo queda analizado y disponible para ser utilizado por el usuario. \\
+		\textbf{Excepciones}          & Formato incorrecto o archivo corrupto. \\
+		\textbf{Importancia}          & Alta \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-5 Análisis de archivos CSV.}
+\end{table}
+
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-6}    & Simulación de envío de datos \\
+		\toprule
+		\textbf{Versión}              & 1.0 \\
+		\textbf{Autor}                & Víctor De Marco Velasco \\
+		\textbf{Requisitos asociados} & RF-5.1, RF-5.2,RF-6.2 \\
+		\textbf{Descripción}          & El usuario puede simular el envío de paquetes, bien manualmente introduciendo los datos, o automáticamente con valores aleatorios. \\
+		\textbf{Precondición}         & El usuario debe estar autenticado. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\item El usuario accede a la sección de simulación.
+			\item Selecciona si quiere enviar datos manuales o aleatorios.
+			\item Si elige manual, introduce valores personalizados.
+			\item Si elige aleatorio, el sistema genera los datos automáticamente.
+			\item El paquete se analiza y se guarda en el dataset correspondiente.
+		\end{enumerate}\\
+		\textbf{Postcondición}        & El archivo CSV se actualiza con el nuevo paquete generado. \\
+		\textbf{Excepciones}          & Valores inválidos, error al generar datos, fallo de almacenamiento. \\
 		\textbf{Importancia}          & Media \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-4 Visualizar datos en la aplicación web}
+	\caption{CU-6 Simulación de envío de datos.}
 \end{table}
 
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-7}    & Acceso a la aplicación web \\
+		\toprule
+		\textbf{Versión}              & 1.0 \\
+		\textbf{Autor}                & Víctor De Marco Velasco \\
+		\textbf{Requisitos asociados} & RF-6.1, RF-6.2,RF-6.3 \\
+		\textbf{Descripción}          & El usuario debe poder acceder a la aplicación web con una cuenta personal si así lo desea . \\
+		\textbf{Precondición}         & \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\item El usuario accede a la dirección de la aplicación web.
+			\item El usuario registra una cuenta si no dispone de una.
+			\item El usuario intenta recuperar la contraseña si no recuerda cual uso para registrarse.
+			\item El usuario procede a iniciar sesión con el usuario y contraseña que uso para registrarse.
+		\end{enumerate}\\
+		\textbf{Postcondición}        & El sistema guarda sus credenciales y le permite acceder a la aplicación. \\
+		\textbf{Excepciones}          & Credenciales incorrectas o campos vacíos. \\
+		\textbf{Importancia}          & Alta \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-7 Acceso a la aplicación web.}
+\end{table}

@@ -1,7 +1,249 @@
 \capitulo{5}{Aspectos relevantes del desarrollo del proyecto}
 
-Este apartado pretende recoger los aspectos más interesantes del desarrollo del proyecto, comentados por los autores del mismo.
-Debe incluir desde la exposición del ciclo de vida utilizado, hasta los detalles de mayor relevancia de las fases de análisis, diseño e implementación.
-Se busca que no sea una mera operación de copiar y pegar diagramas y extractos del código fuente, sino que realmente se justifiquen los caminos de solución que se han tomado, especialmente aquellos que no sean triviales.
-Puede ser el lugar más adecuado para documentar los aspectos más interesantes del diseño y de la implementación, con un mayor hincapié en aspectos tales como el tipo de arquitectura elegido, los índices de las tablas de la base de datos, normalización y desnormalización, distribución en ficheros3, reglas de negocio dentro de las bases de datos (EDVHV GH GDWRV DFWLYDV), aspectos de desarrollo relacionados con el WWW...
-Este apartado, debe convertirse en el resumen de la experiencia práctica del proyecto, y por sí mismo justifica que la memoria se convierta en un documento útil, fuente de referencia para los autores, los tutores y futuros alumnos.
+Este apartado recoge los aspectos más interesantes del desarrollo del proyecto y explica los detalles de mayor relevancia de las fases de análisis, diseño e implementación.
+
+\section{Despliegue de una red LoRaWAN}
+El primer paso en el desarrollo del proyecto consistió en la creación y configuración de una red LoRaWAN, con el objetivo principal de familiarizarme con el ecosistema de los sistemas IoT y, al mismo tiempo, establecer un flujo constante y fiable de datos enviados por un dispositivo IoT.
+
+Estos datos serían posteriormente almacenados y estructurados en un dataset, que actuaría como pilar fundamental para el desarrollo y validación de las siguientes partes del proyecto. Por este motivo, era especialmente importante asegurar que esta primera parte se realizase de forma correcta.
+
+A continuación voy a describir los diferentes pasos necesarios para el despliegue de una red LoRaWAN:
+
+\subsection{Configuración del gateway Dragino}
+La recepción y retransmisión de paquetes LoRaWAN en este proyecto, se realizó a través del Gateway Dragino LPS8. Este gateway tiene como principal función recibir datos de dispositivos IoT LoRa en el contexto de este proyecto, el dispositivo MerryIoT MS10, y después transmitirlos a través de Internet a un Network Server, en este caso, The Things Network.
+
+Para configurar dicho dispositivo lo primero seria asegurarse de que este conectado a una fuente de alimentación y que tenga acceso a internet, en este caso se le ha conectado vía Ethernet al router de mi entorno de trabajo.
+
+Lo siguiente seria acceder a la interfaz web de configuración del dispositivo, dicha interfaz web puede encontrarse en la dirección http://IPADDRESS:8000 donde IPADDRESS es la dirección IP asignada al gateway por el router al que este conectado. Antes de poder configurar la interfaz web te solicitara ingresar usuario y contraseña:
+User Name: root
+Password: dragino
+
+Una vez dentro sera necesario configurar dos apartados para asegurar el correcto funcionamiento de la futura conexión con TTN:
+El primero referente a permitir la conexión del gateway con el Network Server.
+\imagen{Gateway_config}{}{0.8}
+El segundo referente a la configurar el correcto plan de frecuencia entre el sensor y el gateway.
+\imagen{Gateway_frec}{}{0.8}
+  
+Si has seguido correctamente estos pasos ya solo queda registrar ambos dispositivos IoT en TTN y observar el flujo de datos entre ellos.
+
+
+\subsection{Configuración y registro en The Things Network (TTN) }
+En este proyecto se ha optado por utilizar The Things Stack Sandbox para monitorizar los dispositivos IoT, ya que permite registrar dispositivos y observar el tráfico de red en tiempo real de forma gratuita.
+
+A continuación se explicara el proceso seguido para lograr registrar correctamente tanto el gateway como el sensor en TTSS.
+
+Una vez tienes creada tu cuenta en TTSS primero debes elegir la opción register gateway, esta opción lo primero que te va a pedir es el Gateway EUI (se puede obtener en la interfaz web del gateway, en la pestaña referente a la configuración LoRaWAN), nombrar el gateway como el usuario desee y por último establecer un plan de frecuencia concorde con el configurado en la interfaz web. 
+
+Si has seguido los pasos correctamente en TTSS deberia verse algo similar a esto:
+\imagen{Gateway_status}{}{0.5}
+
+En TTSS es necesario crear una aplicación para poder gestionar los sensores, solo se necesita elegir la opción Add Application  y escoger un ID único y un nombre a elección del usuario. 
+
+Con la aplicación creada se selecciona la opción Add end device y se elige el método de añadir las especificaciones de forma manual. Lo siguiente es introducir el mismo plan de frecuencia que en el gateway y las versiones correspondientes de LoRaWAN y parametros al sensor a utilizar, en el caso del sensor del proyecto dichas versiones son 
+LoRaWAN Specification 1.0.4 y 
+RP002 Regional Parameters 1.0.3. Por último te pide introducir  DevEUI, AppEUI, y AppKey, parametros que vienen incluidos en la etiqueta del sensor o en la documentación del fabricante.
+
+Si todo ha ido bien ya podríamos empezar a observar el flujo de datos entre nuestros dispositivos IoT.
+
+\subsubsection{Pruebas iniciales para observar el flujo de datos}
+Gracias TTSS podemos ver como interactúan los dispositivos IoT en la consola Live data, aunque todavía no podemos sacar información relevante debido a que nos falta por implementar un payload formatter, un pequeño fragmento de código capaz de decodificar el payload que envía el sensor IoT al gateway.
+
+El payload formatter es diferente para cada sensor y debe ser creado a partir del payload de ejemplo mostrado en el manual de usuario del sensor~\cite{MerryIoT:manual}.
+
+\imagen{Formatter}{Codigo del payload formatter}{0.8}
+
+Una vez aplicado el payload formatter la información útil que podemos sacar del mensaje enviado por el sensor se ve así:
+
+\imagen{decoded_payload}{Payload decodificado}{0.8}
+
+
+\section{Desarrollo del analizador y receptor de paquetes }
+Una vez configurada la red LoRaWAN y comprobar el correcto flujo de datos entre los dispositivos, el siguiente paso era buscar como almacenar todos esos datos de forma segura para crear un dataset el cual analizar en el futuro.
+
+Se estudiaron diversas formas para llevar a cabo este proceso desde servicios web relacionados con bases de datos hasta almacenarlos de forma local, pero todas las opciones pasaban por configurar un webhook en TTSS.
+\subsubsection{Webhook}
+
+Primero voy a explicar que es y como se configura un webhook en TTSS:
+
+Un webhook es un mecanismo de callback HTTP. Dicho mecanismo enviará automáticamente una petición HTTP POST a una URL especifica cada vez que un dispositivo envíe datos (uplink).
+
+En tu aplicación de TTSS elegir el apartado webhooks y seleccionar Add webhook, escribes un ID único y escoges JSON como formato, en la url base escribes la url que quieres que reciba los datos, en el caso del proyecto como solo nos interesa recibir los datos (uplink) en el apartado Enabled event types marcamos Uplink message y añadimos /ttn. Así cada vez que el webhook quiera enviar un mensaje a la url base lo hará al apartado /ttn. 
+
+Si has seguido los pasos correctamente  el webhook debería verse así:
+
+\imagen{webhook}{Imagen webhook TTSS}{1}
+
+
+En este proyecto se opto por redirigir los mensajes a un servidor propio en vez de guardarlos en la nube, para facilitar el análisis que se llevaría a cabo posteriormente.
+
+Para realizar este proceso se decidió usar un webhook de TTSS y Cloudflare Tunnel como método para exponer de forma segura el servidor local al exterior.
+
+Gracias a realizarlo de esta forma fue posible exponer el servidor Flask local sin necesidad de modificar la configuración del router, garantizar seguridad en la transmisión ya que Cloudflare proporciona un tunel seguro y cifrado y configurar de forma sencilla el flujo de datos. 
+
+\subsubsection{Función de recibir y almacenar}
+
+Una vez terminado todo este proceso era necesario crear una aplicación web en Flask capaz de recibir y almacenar los datos, se opto por que fueran almacenados en un archivo csv, a futuro cuando ya se habían almacenado suficientes datos y se disponía de un dataset de tamaño considerable se procedió a añadir la función de analizar los paquetes de datos recibidos, pero primero nos centraremos en las funciones recibir y almacenar.
+
+La aplicación Flask se diseñó para exponer un endpoint HTTP (/ttn) accesible públicamente gracias al túnel de Cloudflare. Este endpoint es el receptor directo de los paquetes LoRaWAN enviados desde TTSS.
+
+Cada paquete recibido contiene una estructura JSON con múltiples parámetros. Los datos son extraídos del decoded payload proporcionado por TTN y estructurados en un diccionario interno para luego ser almacenado en un archivo CSV local como una nueva fila, dicho archivo es el que sera utilizado como dataset durante todo el proyecto.
+
+\subsubsection{Elección de método para clasificar}
+
+En dicho dataset los paquetes de datos tienen un atributo denominado estado el cual al comienzo del proyecto se asumía que su valor era "real", cuando se disponían de suficientes paquetes como para tratar de automatizar un proceso capaz de analizar y determinar de forma correcta el valor del atributo estado de cada paquete, comencé a plantearme cual seria el mejor método para realizar el análisis y la clasificación correspondiente.
+
+Algunas de esas opciones que fueron descartadas pero se plantearon son:
+
+Modelos de aprendizaje automático supervisado: Se contempló el uso de algoritmos como árboles de decisión. Sin embargo, esta opción fue descartada ya que el dataset del que se disponía para entrenar el modelo no era el adecuado, este dataset creado a partir de los paquetes recibidos de un dispositivo IoT tiene ciertas peculiaridades que imposibilitan el uso de esta técnica, por poner un ejemplo el modelo daba mucho peso a la hora de determinar si un paquete era real o falso al voltaje recibido, ya que como todos los paquetes del dataset han sido enviados desde el mismo dispositivo pues todos tenían el mismo voltaje, por lo tanto el modelo asumía que los paquetes reales debían tener cierta cantidad de voltaje ignorando el resto de atributos del paquete igual o mas importantes. Dicho modelo podía llegar a clasificar como real un paquete  que marcase 100 grados mientras su voltaje fuera 2.4, debido a la asociaciones incorrectas que asumió debido a  disponer de un dataset no tan amplio y variado como necesitan estos modelos.
+
+Detección de anomalías sin supervisión (clustering): Técnicas como k-means o algoritmos de aislamiento fueron consideradas como posibles herramientas para detectar desviaciones. No obstante, requerían una preconfiguración compleja y presentaban un alto riesgo de falsos positivos ante pequeñas variaciones legítimas.
+
+Finalmente, se optó por un enfoque más sencillo, transparente y controlado: una combinación de reglas heurísticas definidas manualmente junto a un sistema complementario de reglas de asociación extraídas con ayuda de la librería mlxtend.
+
+\subsubsection{Función de clasificar/analizar}
+
+Las reglas heurísticas permitieron codificar conocimientos específicos sobre el comportamiento esperado del dispositivo, como los rangos normales de temperatura y humedad. En cambio, las reglas de asociación ofrecieron una forma de complementar este sistema con correlaciones frecuentemente observadas entre atributos en paquetes etiquetados previamente, como las condiciones de detección de presencia.
+
+Este método ofrece ciertas ventajas tales como:
+\begin{itemize}
+    \item Fácil ajuste y mantenimiento: permite incorporar nuevas condiciones o relajar otras en función de nuevas observaciones.
+    \item No requiere entrenamiento previo ni datasets amplios y variados.
+    \item Robustez y eficacia suficiente para el entorno planteado por el proyecto.
+\end{itemize}
+
+Para obtener las reglas de asociación se decidió solo tener en cuenta aquellas reglas con mas de un 15\% de soporte es decir que la regla predice correctamente al menos un 15\% de las instancias del dataset y un 90\% de confianza es decir que de todas las instancias en las que la regla es aplicable que al menos sea capaz de predecir correctamente el 90\% de los casos.
+
+\imagen{sup_conf}{Fragmento de código encargado de determinar el soporte y confianza}{0.8}
+
+Tras ejecutar ese codigo las reglas obtenidas son:
+
+\imagen{reglas_obtenidas}{Reglas de asociación obtenidas}{0.8}
+
+Si el tiempo de espera es largo entonces No hay presencia.
+Traducido a nuestro dataset es si time\_since\_last\_event\_min es mayor que 1 entonces tamper\_detected es false esto se cumple en los paquetes reales.
+
+Si el tiempo de espera es corto entonces hay presencia.
+Traducido a nuestro dataset es si time\_since\_last\_event\_min es menor o igual que 1 y tamper\_detected es true el paquete es real.
+
+Gracias a esas reglas podemos determinar que entonces si Hay presencia y tiempo de espera es largo el paquete no va se real.
+
+Al principio se podría interpretar que otra regla podria ser si No hay presencia y tiempo de espera es corto entonces el paquete es falso, pero eso no es aplicable ya que si se observan las reglas de asociación obtenidas la regla si No hay presencia entonces el tiempo de espera es largo no aparece y es por que no tiene el soporte mínimo o la confianza mínima y es decir que hay mas casos de los permitidos donde No hay presencia y el tiempo de espera es corto, finalizando en que no podemos asegurar que un paquete que no tenga presencia vaya a tener un tiempo de espera largo y eso hace posible la existencia de paquetes reales con tiempo de espera corto  y sin presencia, desmiento la regla asumida al inicio.
+
+
+Las reglas heurísticas elegidas para acompañar a las reglas de asociación antes mencionadas son: 
+
+\begin{itemize}
+    \item El voltaje de la batería no puede superar 3V ni puede ser menor 2.4V como determina el manual de usuario del sensor.
+    \item La temperatura medida no puede ser superior a 50 grados ni inferior a 0 grados.
+    \item La humedad no puede ser superior a 100\% ni inferior a 0\%
+    \item El atributo ocupado no puede ser True
+\end{itemize}
+
+Por último se ha añadió una ultima regla algo mas compleja que las demás, ya que no depende solo del paquete recibido sino que depende también del último paquete real almacenado, si ambos paquetes no detectan presencia se comprueba que el tiempo que haya pasado entre ellos sea de aproximadamente una hora que es el periodo de tiempo que tarda en enviar un nuevo paquete el sensor si no detecta ninguna presencia.
+
+\imagen{Regla_f}{Fragmento de código referente a la ultima regla añadida}{0.8}
+
+Por ultimo una vez que el código evalúa el nuevo paquete con todas las reglas mencionadas, determina si es un paquete infectado o si es un paquete real y procede a almacenar en el archivo del dataset con el atributo estado determinado tras el análisis.
+
+
+\section{Desarrollo de la aplicación web enfocada al usuario }
+
+Una vez terminada la infraestructura necesaria para la recepción y análisis automático de los datos recibidos, el siguiente paso del proyecto consistió en diseñar y desarrollar una segunda aplicación web, esta vez centrada en la interacción directa con el usuario. Esta nueva interfaz tiene como objetivo proporcionar herramientas visuales e intuitivas que permitan gestionar, visualizar, analizar y simular datos provenientes del dispositivo IoT.
+
+Esta aplicación web se desarrolló también con Flask y se desarrollo en torno a cumplir una serie de funcionalidades que permiten al usuario:
+
+\begin{itemize}
+    \item Gestionar distintas cuentas diferenciadas entre si.
+    \item Visualizar las gráficas de temperatura y humedad basadas en los datos almacenados.
+    \item Gestionar distintos ficheros CSV (subir, eliminar, ver, descargar o analizar).
+    \item Enviar paquetes personalizados o aleatorios al receptor para simular tráfico IoT.
+\end{itemize}
+
+
+\subsubsection{Creación de usuarios}
+Lo primero que te encuentras al intentar acceder a esta aplicación web es una pestaña de login, esto se debe a que la aplicación cuenta con un login segurizado, que se caracteriza por no permitir al usuario acceder a ninguna funcionalidad de la aplicación, hasta que no haya iniciado sesión, permitiéndole solo iniciar sesión, registrarse o recuperar su contraseña. Evitando así posibles problemas generados al intentar usar las funcionalidades de la aplicación sin tener una cuenta asociada.  
+
+Al principio del proyecto se planteo la opción de desarrollar la aplicación sin la posibilidad de que hubiera diferenciación entre usuarios, pero esto provocaba mas problemas que soluciones al complicar mucho mas las funcionalidades referentes a la gestión de archivos.
+
+Entonces se decidió implementar una pequeña base de datos encargada de almacenar los usuarios con sus contraseñas y así separar las acciones de un usuario de las de otro.
+
+
+\textbf{Inicio de Sesión}
+
+Referente al inicio de sesión , la aplicación obliga al usuario a rellenar ambos campos (Usuario, Contraseña), para evitar fallas de seguridad y notifica al usuario si al intentar iniciar sesión el usuario introducido o no existe o no concuerda con la contraseña introducida.
+
+Si no se desea crear una cuenta se puede iniciar sesión con Usuario: admin, contraseña:admin.
+
+\textbf{Registro}
+
+Referente al registro aclarar que no se permite que existan dos usuarios con el mismo nombre, se notifica al usuario si intenta registrarse con un usuario ya existente. Una vez creado el nuevo usuario se le asigna una carpeta dentro del directorio csv del proyecto donde se guardaran sus archivos futuros.
+
+\textbf{Recuperar Contraseña}
+
+Se planteo la posibilidad de que el usuario se olvidara de su contraseña, para solucionar este caso se opto por pedir al usuario que nos aportara el nombre de uno de los ficheros csv que se encuentre en su carpeta personal, si lo aporta se le permite restablecer la contraseña.
+
+
+\subsubsection{Visualizar gráficas}
+
+Esta fue la primera funcionalidad que se planteo para la aplicación web ya que mi objetivo inicial era simplemente mostrar al usuario las gráficas referentes a los datos recopilados (Temperatura y Humedad) por el sensor IoT.
+
+Con el transcurso del desarrollo del proyecto se opto por permitir al usuario interactuar mucho mas con esta funcionalidad, desde que pueda elegir si solo mostrar en la gráfica los paquetes con el atributo estado igual a real, o permitir que visualice en la gráfica cualquier archivo csv que haya subido a la aplicación.
+
+Todo este apartado se desarrollo gracias Chart.js que permite generar gráficos interactivos en HTML.
+
+
+\imagen{Visualizar_graficas}{Interfaz gráfica referente a visualizar gráficas}{0.8}
+
+En la siguiente imagen se observa la posibilidad de que el usuario visualice las gráficas correspondientes a un archivo csv propio. 
+
+\imagen{Visualizar_diff}{Visualizar gráficas de un archivo diferente al dataset}{0.8}
+
+
+\subsubsection{Gestionar ficheros CSV}
+
+Esta funcionalidad es la mas extensa del proyecto debido a la variedad de opciones que permite al usuario realizar.
+
+Explicare brevemente las funcionalidades mas simples:
+
+\begin{itemize}
+    \item Visualizar contenido del archivo.
+    \item Aplicar el archivo para que sea visible en el apartado de las gráficas.
+    \item Eliminar el archivo.
+    \item Descargar el archivo.
+\end{itemize}
+
+Las siguientes dos funcionalidades son analizar fichero y añadir fichero, puede sonar similar pero son funcionalidades completamente distintas.
+
+\textbf{Añadir fichero}
+
+Una vez implementada la posibilidad de diferenciar entre usuarios, era necesario implementar la posibilidad de que cada usuario pudiera interactuar con los archivos csv que desease y por ello se desarrollo esta funcionalidad, la cual permite al usuario añadir un fichero que soporte la aplicación (Misma estructura que el fichero csv webhook\_dataset) para interactuar con el de todas las formas mencionadas anteriormente.
+
+Para facilitar al usuario completar esta tarea se desarrollo un selector de archivos que solo muestra archivos csv y en caso de que el usuario intente subir un fichero que no pueda ser soportado por la aplicación se le notificara al instante de cual ha sido el error. 
+
+Aun así esta funcionalidad tiene una exigencia adicional y es que el fichero a subir ya haya sido analizado anteriormente es decir que el archivo ya cuente con el atributo estado.
+
+Lo cual puede ser un problema si el usuario no cuenta con una aplicación como la de nuestro proyecto capaz de analizar ficheros csv y añadir el atributo estado.
+
+Es por eso que el siguiente paso en el desarrollo del proyecto fue crear la función analizar fichero.
+
+
+\textbf{Analizar fichero}
+
+Como he mencionado antes esta función se desarrolla para complementar a la función Añadir fichero, permitiendo así a los usuarios que desean subir sus ficheros csv a la aplicación web peor no disponen de una herramienta capaz de analizarlos y clasificarlos en reales o infectados.
+
+En términos de funcionamiento, es muy similar a añadir fichero, permitiendo solo analizar ficheros csv que tengan la misma estructura que el fichero webhook\_dataset solo que en esta ocasión también permite que no tengan la ultima columna correspondiente al atributo estado ya que esta columna es la que va a añadir esta función.
+
+Para realizar el análisis importa la función de análisis correspondiente a la aplicación webhook y la aplica sobre todas las filas del fichero a analizar, una vez termina lo añade a la carpeta personal del usuario con el mismo nombre del fichero entregado pero añadiendo el sufijo \_analizado para aclarar al usuario que ese fichero ha sido generado de esta forma.
+
+
+\subsubsection{Infectar}
+
+Para terminar la ultima función implementada a la aplicación es infectar, surge de plantearse la posibilidad de que el usuario no tenga los medios para crear una red LoRaWAN pero aun así quiera disfrutar de la funcionalidad de la aplicación encargada de recibir y almacenar los paquetes de datos.
+
+Para ello se crea la posibilidad de que el usuario desde la interfaz web pueda crear sus propios paquetes de datos ya sea de forma manual o de forma aleatoria y luego enviarlos a la aplicación webhook, la cual tratara esos paquetes como si hubieran sido enviados desde TTSS y los analizara y almacenara en el archivo correspondiente al dataset (webhook\_dataset).
+
+Permitiendo así al usuario probar el funcionamiento de la función de análisis de datos asociada al dataset.
+
+A continuación se muestra la imagen de un paquete de datos generado aleatoriamente listo para ser enviado.
+
+\imagen{paquete_aleatorio}{Imagen visual de la interfaz web referente a la función infectar}{0.8}

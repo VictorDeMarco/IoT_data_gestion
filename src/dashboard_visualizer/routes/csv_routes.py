@@ -104,6 +104,8 @@ def eliminar_csv(nombre):
         path_archivo = os.path.join(CSV_DIR,nombre_usuario, nombre)
 
     if os.path.exists(path_archivo):
+        if session['csv_aplicado'] == nombre:
+            session['csv_aplicado'] = nombre_dataset
         os.remove(path_archivo)
     else:
         flash(f'Archivo "{nombre}" no encontrado.', 'error')
