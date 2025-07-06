@@ -36,6 +36,7 @@ def evaluar_paquete(paquete_actual, paquete_anterior):
     # Heurística 1: si el sensor marca 'ocupado', se considera sospechoso automáticamente
     if paquete_actual['occupied'] == "True":
         sospechoso = True
+        razones.append("El atributo occupied es sospechoso")
 
 
     # Heurística 2: temperatura fuera de rango normal
@@ -74,11 +75,16 @@ def evaluar_paquete(paquete_actual, paquete_anterior):
             t_anterior = datetime.fromisoformat(paquete_anterior['timestamp'].replace("Z", "+00:00"))
             diferencia_min = abs((t_actual - t_anterior).total_seconds() / 60)
             tolerancia = 2
-            resto = diferencia_min % 60
 
-            if not  resto <= tolerancia or resto >= (60 - tolerancia) :
+            if diferencia_min >= tolerancia:
+                resto = diferencia_min % 60
+                if not  resto <= tolerancia or resto >= (60 - tolerancia) :
+                    sospechoso = True
+                    razones.append("Diferencia horaria incorrecta")
+            else:
                 sospechoso = True
                 razones.append("Diferencia horaria incorrecta")
+
 
         except Exception as e:
             razones.append(f"Error evaluando timestamps: {e}")

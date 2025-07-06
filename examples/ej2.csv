@@ -3,6 +3,8 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-14T07:09:51Z,False,False,False,2.4,23,57,2,1895,real
 2025-06-14T08:09:51Z,False,False,False,2.5,23,55,62,1895,real
 2025-06-14T09:09:51Z,False,False,False,2.5,24,53,122,1895,real
+
+
 2025-06-14T09:11:14Z,False,False,True,2.5,24,53,0,1897,real
 2025-06-14T09:18:02Z,False,False,True,2.4,28,49,0,1910,real
 2025-06-14T09:20:07Z,False,False,True,2.4,31,47,0,1924,real

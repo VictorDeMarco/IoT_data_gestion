@@ -3,12 +3,18 @@ from flask import render_template, request, redirect, url_for, flash, Blueprint,
 import random
 from src.dashboard_visualizer.utils.auth_utils import login_requerido
 import requests
+import os
 
 
 infect_bp = Blueprint('infect_bp', __name__)
+mode = os.getenv("MODE", "local")
+
 
 # Dirección del webhook (el receptor simulado del backend)
-TTN_ENDPOINT = "http://host.docker.internal:5000/ttn"
+if mode == "docker":
+    TTN_ENDPOINT = "http://host.docker.internal:5000/ttn"
+else:
+    TTN_ENDPOINT = "http://localhost:5000/ttn"
 
 # Ruta principal para manejar envío de paquetes simulados
 @infect_bp.route('/infectar', methods=['GET'])

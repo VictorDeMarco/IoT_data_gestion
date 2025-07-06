@@ -42,10 +42,11 @@ def listar_csv():
     user_dir = os.path.join(CSV_DIR, nombre_usuario)
     if os.path.exists(user_dir):
         for nombre in os.listdir(user_dir):
+            csv_path=os.path.join(user_dir, nombre)
             archivos.append({
                 'nombre': nombre,
                 'es_base': False,
-                'tamano': round(os.path.getsize(user_dir) / 1024, 2),
+                'tamano': round(os.path.getsize(csv_path) / 1024, 2),
                 'modificado': datetime.fromtimestamp(os.path.getmtime(user_dir), tz=pytz.utc).astimezone(zona).strftime('%d/%m/%Y %H:%M')
             })
 
@@ -147,6 +148,30 @@ def subir_csv():
             flash("Formato del CSV incorrecto. Verifica el formato del archivo CSV base para ver cuál es el formato correcto.", "formato_error")
             return redirect(url_for(url))
 
+        for _, fila in df.iterrows():
+            paquete_actual = {
+                'timestamp': fila['timestamp'],
+                'occupied': str(fila['occupied']),
+                'button_pressed': str(fila['button_pressed']),
+                'tamper_detected': str(fila['tamper_detected']),
+                'battery_voltage': float(fila['battery_voltage']),
+                'temperature_celsius': float(fila['temperature_celsius']),
+                'humidity_percent': float(fila['humidity_percent']),
+                'time_since_last_event_min': float(fila['time_since_last_event_min']),
+                'event_count': int(fila['event_count']),
+                'estado': str(fila['estado'])
+            }
+
+            if (
+                    (paquete_actual['occupied'] != "True" and paquete_actual['occupied'] != "False") or
+                    (paquete_actual['button_pressed'] != "True" and paquete_actual['button_pressed'] != "False") or
+                    (paquete_actual['tamper_detected'] != "True" and paquete_actual['tamper_detected'] != "False") or
+                    (paquete_actual['estado'] != "real" and paquete_actual['estado'] != "infectado") or
+                    (not timestamp_valido(paquete_actual['timestamp']))
+            ):
+                flash(f"El archivo tiene: valores no soportados", "formato_error")
+                return redirect(url_for(url))
+
         # Reiniciar el puntero del archivo para volver a guardarlo
         archivo.stream.seek(0)
 
@@ -205,6 +230,16 @@ def analizar_csv():
                 'time_since_last_event_min': float(fila['time_since_last_event_min']),
                 'event_count': int(fila['event_count'])
             }
+
+            if (
+                    (paquete_actual['occupied'] != "True" and paquete_actual['occupied'] != "False") or
+                    (paquete_actual['button_pressed'] != "True" and paquete_actual['button_pressed'] != "False") or
+                    (paquete_actual['tamper_detected'] != "True" and paquete_actual['tamper_detected'] != "False") or
+                    (not timestamp_valido(paquete_actual['timestamp']))
+            ):
+                    flash(f"Error durante el análisis: valores no soportados", "analizarf")
+                    return redirect(url_for(url))
+
             # Evaluar cada fila del CSV usando reglas heurísticas
             sospechoso, _ = evaluar_paquete(paquete_actual, paquete_anterior)
             estados.append("infectado" if sospechoso else "real")
@@ -242,3 +277,13 @@ def descargar_csv(nombre):
         path_dir = os.path.join(CSV_DIR, nombre_usuario)
 
     return send_from_directory(path_dir, nombre, as_attachment=True)
+
+def timestamp_valido(timestamp_str):
+    formatos = ["%Y-%m-%dT%H:%M:%SZ", "%Y-%m-%dT%H:%M:%S.%fZ"]
+    for fmt in formatos:
+        try:
+            datetime.strptime(timestamp_str, fmt)
+            return True
+        except ValueError:
+            continue
+    return False
