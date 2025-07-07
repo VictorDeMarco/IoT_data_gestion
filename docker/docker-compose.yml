@@ -25,6 +25,7 @@ services:
       - db
     environment:
       - DB_URL=postgresql://admin:admin123@db:5432/flaskdb
+      - MODE=docker
 
   webhook:
     build:

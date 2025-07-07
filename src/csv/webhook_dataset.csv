@@ -308,3 +308,4 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-07-06T08:46:44Z,True,True,False,3.2,47,26,33,4900,infectado
 2025-07-06T08:52:08Z,False,False,True,2.4,34,45,0,12000,real
 2025-07-06T19:16:43Z,False,False,True,2.4,23,45,22,12000,infectado
+2025-07-07T04:35:58Z,False,True,False,2.1,58,26,5,6945,infectado
