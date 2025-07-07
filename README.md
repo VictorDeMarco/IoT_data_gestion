@@ -11,8 +11,11 @@ posibles anomalías y simular el envio de paquetes de datos.
 ## Características
 
 Integración IoT con red LoRaWAN: Creación de una red LoRaWAN completamente funcional y conectada a la aplicacion webhook_receptor para recibir directamente de ahi los datos de los sensores IoT. 
+
 Análisis automatizado de datos: Clasificación de paquetes de datos como reales o infectados mediante reglas heurísticas y de asociación.
+
 Visualización gráfica de la información: Interfaz web  desarrollada con Flask + HTML + JavaScript, permite visualizar gráficas referentes al contenido de los paquetes.
+
 Gestión de usuarios y archivos: Sistema de registro, login y recuperación de contraseña con seguridad básica y separación de información entre usuarios.
 
 ## Autor
