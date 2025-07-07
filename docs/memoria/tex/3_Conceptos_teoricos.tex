@@ -1,0 +1,145 @@
+\capitulo{3}{Conceptos teóricos}
+
+Para comprender correctamente las herramientas y técnicas utilizas para cumplir los objetivos mencionados anteriormente es necesario comprender teóricamente estos conceptos, las redes de dispositivos IoT, la transmisión de datos mediante protocolos LoRaWAN y la recogida y análisis de datos. Dichos conceptos pasaremos a explicarlos detalladamente a continuación:
+
+
+
+\section{Internet de las Cosas (IoT)}
+\subsection{Definición}
+El \textbf{internet de las cosas (IoT)}~\cite{aws:iot} hace referencia a una red de dispositivos físicos interconectados capaces de recopilar, intercambiar y procesar datos a través de Internet sin intervención humana directa. Esta tecnología permite que objetos cotidianos como sensores de movimiento, termostatos, electrodomésticos, vehículos o sistemas industriales puedan responder al usuario de forma inteligente.
+
+El concepto de IoT surge de la evolución de tecnologías como los chips de bajo consumo, las etiquetas RFID y las telecomunicaciones de alta velocidad, que han facilitado la miniaturización y el abaratamiento de los componentes electrónicos. Gracias a estos avances, actualmente es viable integrar esos sensores en los objetos de uso cotidiano.
+\subsection{Cómo funciona}
+Un sistema común de IoT funciona mediante la recopilación y el intercambio de datos en tiempo real. 
+
+Un sistema del IoT tiene tres componentes:
+\begin{itemize}
+   \item \textbf{Dispositivo inteligente}: Se trata de un dispositivo, en nuestro caso el \textbf{MerryIoT MS10 Motion Detection}~\cite{MerryIoT:manual} , al que se le dotó de capacidades de computación. Recopila datos de su entorno o de las entradas de los usuarios y comunica los datos a través de Internet hacia la aplicación de IoT.
+    \item \textbf{Aplicación de IoT}: Una aplicación de IoT es un conjunto de servicios y software que integra los datos recibidos de varios dispositivos de IoT. Nuestra aplicación utiliza esos datos recibidos para analizarlos y tomar una decisión referente así el paquete recibido puede o no a ver sido infectado\footnote{Se dice infectado de un paquete de datos recibido por la aplicación IoT, que tras ser analizado muestra características sospechosas que nos dan a entender que ese paquete puede ser fruto de un tercero con intenciones maliciosas}.
+    \item \textbf{Una interfaz de usuario gráfica}: El dispositivo de IoT puede administrarse a través de una interfaz de usuario gráfica. En nuestro caso un sitio web que puede utilizarse para analizar y gestionar archivos de datos recopilados por estos dispositivos.
+\end{itemize}
+
+\imagen{Dia_IoT}{Diagrama de un sistema IoT (con soporte movil)~\cite{IoT:diaimg}}{1}
+
+
+\subsection{IioT o IoT industrial}
+El \textbf{Internet Industrial de las Cosas (IIoT)}~\cite{ib:iiot} es el conjunto de sensores, instrumentos y dispositivos autónomos conectados a través de Internet a aplicaciones industriales. Esta red permite recopilar datos, realizar análisis y optimizar la producción, aumentando la eficiencia y reduciendo los costes del proceso de fabricación y prestación de servicios. Las aplicaciones industriales son ecosistemas tecnológicos completos que conectan dispositivos y a estos con las personas que gestionan los procesos en líneas de montaje, logística o distribución a gran escala.
+
+La diferencia entre el Internet de las Cosas (IoT) y su versión industrial (IIoT) es que, mientras el IoT está enfocado a servicios para los consumidores, el IIoT se concentra en aumentar la seguridad y la eficiencia en los centros de producción. Aplicado a nuestro proyecto al medir factores como temperatura y humedad, podría aplicarse en un entorno referente a la industria de la agricultura, donde es relevante llevar un control de esos factores.
+
+
+
+\section{Redes LoRa y protocolo LoRaWAN}
+
+\subsection{LoRa}
+
+\subsubsection{Definición}
+
+\textbf{LoRa (Long Range)}~\cite{Moko:Lora} es una tecnología de modulación inalámbrica que destaca por su bajo consumo y gran alcance, haciéndola ideal para aplicaciones IoT. Sin embargo, LoRa por sí sola no especifica cómo gestionar la comunicación entre dispositivos.
+
+\subsubsection{¿Cómo funciona?}
+Una arquitectura de red de Lorawan consiste en nodos Lora, Puertas de enlace de Lora, el servidor de red y el servidor de aplicaciones.
+
+\imagen{LoRa_arq}{Arquitectura de una red LoRaWAN~\cite{TTN:Lorawan}}{1}
+
+\begin{itemize}
+   \item \textbf{Nodos LoRa}: Los nodos finales son los elementos de la red Lora donde se realiza el control o la detección. Normalmente están a prueba de baterías y se encuentran remotamente. Los nodos finales envían datos a cada puerta de enlace en su vecindad y transmiten datos en periódico.
+    \item \textbf{LoRa gateway}: La puerta de enlace recibe los datos de los nodos Lora End y luego los canaliza a un servidor de red. Una puerta de enlace de Lora generalmente consiste en un módulo de radio Lora, un microprocesador, y un medio de conectividad a Internet.
+    \item \textbf{Servidor de red}: El servidor de red administra la red. Filma paquetes duplicados causados por múltiples puertas de enlace que reciben los mismos datos, realiza controles de seguridad, administra el tráfico y el enrutamiento de la puerta de enlace, controlar la tasa adaptativa, y reenvía mensajes al servidor de aplicaciones.
+    \item \textbf{Servidor de aplicaciones}:El servidor de aplicaciones procesa datos del servidor de red, Analiza datos del sensor, admite funciones como visualización de estado y alertas en tiempo real, y opcionalmente puede enviar respuestas al nodo final.
+\end{itemize}
+
+\subsection{LoRaWAN}
+
+\subsubsection{Definición}
+
+LoRaWAN~\cite{Mono:Lorawan} es un protocolo de comunicación LPWAN diseñado para conectar dispositivos IoT con bajo consumo de energía y largo alcance. Como hemos mencionado antes, se basa en la tecnología LoRa, permitiendo la transmisión de datos a distancias de hasta 15 km en entornos rurales y 2-5 km en entornos urbanos.
+
+\subsubsection{Seguridad}
+
+La seguridad es un aspecto fundamental y al que le hemos dado mucha importancia durante el desarrollo de este proyecto, por ello voy a nombrar las principales medidas de seguridad de LoRaWAN:
+
+\begin{enumerate}
+   \item \textbf{Cifrado de extremo a extremo}: Los datos se transmiten encriptados con AES-128, lo que garantiza su confidencialidad.
+    \item \textbf{Autenticación de dispositivos}: Cada sensor cuenta con una clave única para evitar accesos no autorizados~\cite{TTN:Sec}.
+    \item \textbf{Gestión de claves de seguridad}: Se utilizan claves de sesión dinámicas para reducir el riesgo de ataques.
+\end{enumerate}
+
+Sin embargo, como cualquier tecnología inalámbrica, LoRaWAN no es inmune a ataques. Es importante implementar buenas prácticas como el uso de firewalls, segmentación de redes y monitorización continua para detectar anomalías. En el caso de este proyecto, para combatir los posibles ataques se ha optado por la monitorización continua y detección de anomalías. 
+
+\subsection{Diferencias entre LoRa y LoRaWAN}
+
+LoRa~\cite{Moko:Lora} describe la capa física inferior. LoRaWAN es un protocolo que describe las capas superiores de la red. LoRaWAN es un control de acceso a medios basado en la nube (MAC\footnote{Control de Acceso al Medio es una subcapa de la capa de enlace de datos en el modelo OSI,que regula cómo los dispositivos acceden y comparten un medio de transmisión común}) protocolo de capa, pero actúa principalmente como un protocolo de capa de red para gestionar la comunicación entre dispositivos de nodo final y puertas de enlace LPWAN, como protocolo de dirección, mantenido por la Alianza LoRa.
+
+LoRaWAN define la arquitectura del sistema y el protocolo de comunicación para la red, mientras que la capa física LoRa permite el enlace de comunicación de largo alcance.
+
+\imagen{Capas_LoRa}{Diagrama de capas LoRaWAN~\cite{Moko:Lora}}{1}
+
+\subsection{Diferencias entre LoRa y otras tecnologías de transmisión inalámbricas}
+LoRaWAN es un protocolo de comunicación idóneo para paquetes útiles de pequeño tamaño (como datos de sensores) a largas distancias. La modulación LoRa proporciona un alcance de comunicación significativamente mayor con anchos de banda bajos en comparación con otras tecnologías inalámbricas de transmisión de datos. La siguiente imagen muestra algunas tecnologías de acceso que pueden utilizarse para la transmisión inalámbrica de datos, comparando su ancho de banda con su rango de transmisión.
+
+\imagen{dif_LoRa}{Gráfica comparativa de tecnologías de transmisión inalámbrica~\cite{TTN:Graf}}{1}
+
+
+\section{Estructura de los paquetes y análisis heurístico)}
+
+\subsection{Estructura de los paquetes}
+Los paquetes enviados por el dispositivo MerryIoT, llegan codificados en un formato especificado en su manual de usuario~\cite{MerryIoT:manual}, para poder utilizar esos datos es necesario decodificarlos con un payload\footnote{ payload (o carga útil) es la parte del mensaje que contiene los datos de interés que se transmiten entre dos dispositivos, excluyendo los encabezados (headers), metadatos u otra información de control} formatter.
+
+\imagen{payload}{Formato del payload del dispositivo utilizado en el proyecto~\cite{MerryIoT:manual}}{1}
+
+Una vez decodificados, se puede comenzar a analizar su contenido y extraer conclusiones del mismo.
+
+\subsection{Analisis del contenido}
+En este proyecto se ha determinado que la mejor forma para clasificar los datos recibidos es mediante el uso de reglas heurísticas generadas a partir de reglas de asociación y patrones observados durante el desarrollo del proyecto.
+
+\subsubsection{Reglas de asociación}
+Las Reglas de Asociación~\cite{DTM:Rules} son un método utilizado en minería de datos para descubrir relaciones significativas entre variables dentro de grandes conjuntos de datos. Estas reglas permiten identificar patrones frecuentes o comportamientos recurrentes, generalmente en forma de implicaciones del tipo:
+
+Si A ocurre, entonces B tiende a ocurrir.
+(Ejemplo: Si un cliente compra pan, también compra jamón).
+
+Para entender cómo se han obtenido estas reglas es importante aclarar antes unos conceptos:
+
+
+\begin{itemize}
+    \item \textbf{Soporte}: Número de instancias que la regla predice correctamente.
+    
+    soporte(A --> C) = soporte(A U C)
+    
+    \item \textbf{Confianza}: Cociente entre el soporte y el número de instancias para las cuales la reglas es aplicable (el antecedente es cierto.).
+    
+    confianza(A --> C) = soporte(A U C)/ soporte(A)
+    
+    \item \textbf{Item}: un par de atributos/valores.
+
+    \item \textbf{Item Set}:  todos los items que aparecen en una regla.
+    
+\end{itemize}
+
+Para obtener las reglas de asociación se busca superar un soporte y una confianza mínima.  
+
+La ventaja de los algoritmos de reglas de asociación sobre los algoritmos más estándar de árboles de decisión es que las asociaciones pueden existir entre cualquiera de los atributos. Un algoritmo de árbol de decisión generará reglas con una única conclusión, mientras que los algoritmos de asociación tratan de buscar muchas reglas, cada una de las cuales puede tener una conclusión diferente~\cite{DTM:Aso}.
+
+ A diferencia de un árbol de decisión, el conjunto de reglas de asociación no se puede usar directamente para realizar predicciones del mismo modo que puede hacerse con un modelo estándar (como un árbol de decisión o una red neuronal). Esto se debe a las diversas conclusiones posibles que pueden derivarse de las reglas. Es necesario otro nivel de transformación para convertir las reglas de asociación en un conjunto de reglas de clasificación. Por tanto, las reglas de asociación producidas por algoritmos de asociación se conocen como modelos sin refinar.
+
+ Para refinar dicho modelo facilitado por las Reglas de asociación, utilizamos patrones identificados durante la recopilación de los datos. 
+
+\subsubsection{Reglas heurísticas}
+Las reglas heurísticas son normas simples o criterios aproximados que se aplican para detectar comportamientos sospechosos o inusuales.Estas reglas se generan al analizar los patrones de comportamiento conocidos del dispositivo IoT.
+
+El análisis heurístico es un proceso utilizado en campos como la seguridad informática (antivirus); por lo tanto, me parecía bastante adecuado para este proyecto~\cite{Heu:Sec}.
+
+Estas reglas heurísticas sumadas a las reglas de asociación conforman el conjunto encargado de analizar los datos recibidos y clasificarlos correctamente.
+
+
+
+
+
+
+
+
+
+
+
+

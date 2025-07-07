@@ -1,0 +1,221 @@
+\apendice{Plan de Proyecto Software}
+
+\section{Introducción}
+En este apartado se explica la planificación temporal seguida durante el proyecto y el estudio de cuán viable es tanto en el ámbito económico como legal.
+	
+\section{Planificación temporal}
+La planificación temporal del proyecto se ha llevado a cabo utilizando Sprints haciendo referencia a la metodología Scrum. La duración, el objetivo y cómo cumplir dicho objetivo en cada Sprint deben decidirse entre los integrantes que van a formar parte del proyecto antes de comenzar el Sprint.
+Cuando llega la fecha límite acordada, se comprueba si ha sido posible realizar todo lo planificado durante la reunión de creación del Sprint. Según lo que se haya logrado realizar, se actualizan los objetivos y tareas del proyecto. Esto continúa hasta que se da por finalizado el proyecto.
+
+\subsection{Sprints}
+Este apartado recoge todos los sprints realizados durante el desarrollo del proyecto:
+
+\subsubsection{Sprint 1 (23/03/25 - 14/05/25)}
+Este sprint coincide con el comienzo del desarrollo del proyecto. Se centró en recopilar información referente a temas relacionados con el proyecto  y la creación del entorno de desarrollo.
+
+\begin{itemize}
+    \item Buscar información sobre redes y dispositivos IoT.
+    \item Buscar información sobre IioT.
+    \item Crear repositorio de github.
+    \item Registro en Overleaf.
+    \item Prototipo de la arquitectura a implementar.
+\end{itemize}
+
+\subsubsection{Sprint 2 (15/05/25 - 15/06/25)}
+Este segundo sprint se centró en la configuración y creación de la red LoRaWAN, con el propósito de crear un dataset funcional para luego utilizarlo en las distintas funcionalidades del proyecto.
+
+\begin{itemize}
+    \item Buscar información sobre lo que ofrece The Things Network.
+    \item Registro en The Things Network.
+    \item Crear y configurar una red LoRaWAN.
+    \item Configurar un gateway Dragino y conectarlo a The Things Network.
+    \item Configurar un sensor IoT y conectarlo a The Things Network.
+    \item Crear un payload formatter para decodificar los paquetes enviados por el sensor.
+    \item Crear un webhook para enviar los datos a un sitio donde pudieran ser almacenados.
+    \item Buscar formas de recopilar y almacenar todos los datos enviados por el sensor para crear el dataset.
+    \item Registro en Cloudflare.
+\end{itemize}
+
+Este sería el último sprint no documentado en github debido a que el trabajo realizado durante este tiempo no podía plasmarse en su totalidad en un repositorio github.
+
+\subsubsection{Sprint 3 (16/06/25 - 21/06/25)}
+Este sprint se centró en el desarrollo de una aplicación web capaz de recopilar y almacenar los datos enviados por el sensor IoT y crear un prototipo de lo que sería más tarde la aplicación web encargada de interactuar con el usuario. Además, en este sprint se comenzó a desarrollar parte de la documentación del proyecto. 
+
+\begin{itemize}
+    \item Creación de la aplicación webhook\_flask.
+    \item Creación de la aplicación dashboard\_flask.
+    \item Creación del túnel para conectar el webhook de The Things Network con la aplicación webhook\_flask.
+    \item Creación del fichero webhook\_dataset.
+    \item Comenzar a documentar el proyecto.
+\end{itemize}
+
+\imagen{Sprint_3.png}{Commits realizados en Sprint 3}
+
+\subsubsection{Sprint 4 (22/06/25 - 25/06/25)}
+Este sprint se centró en el desarrollo de las funcionalidades referentes a la aplicación dashboard\_flask, además de implementar que el proyecto pudiera ejecutarse por contenedor docker.
+
+\begin{itemize}
+    \item Implementar ejecución por contenedor docker.
+    \item Implementar login securizado.
+    \item Implementar elemento común de la estructura html (barra lateral).
+    \item Implementar visualización del listado de archivos csv disponibles.
+    \item Implementar la posibilidad de añadir archivos csv a la aplicación.
+    \item Implementar diferenciación entre los de ficheros disponibles según el usuario que haya iniciado sesión.
+\end{itemize}
+
+\subsubsection{Sprint 5 (26/06/25 - 29/06/25)}
+Este sprint se centró en el desarrollo de la función analizar de la aplicación webhook\_flask, con el objetivo de que fuera capaz de detectar paquetes recibidos con características sospechosas. Además se añadió a dashboard\_flask la opción de analizar fichero y de simular el envío de paquetes a webhook\_flask.
+Por último, se implementaron algunas mejoras menores a la aplicación dashboard\_flask.
+
+\begin{itemize}
+    \item Implementar función analizar ficheros recibidos a webhook\_flask.
+    \item Implementar función infectar y analizar fichero a dashboard\_flask.
+    \item Mejoras visuales a dashboard\_flask.
+    \item Implementar pestaña de error a dashboard\_flask.
+    \item Implementar manejo y notificación de errores al usuario en dashboard\_flask.
+    \item Mejoras técnicas menores a dashboard\_flask.
+\end{itemize}
+
+\imagen{Sprint_45.png}{Commits realizados en el Sprint 4 y 5}
+
+\subsubsection{Sprint 6 (30/06/25 - 6/07/25)}
+Este es el último Sprint del proyecto, duró un día más de lo esperado y se pretendía finalizar el proyecto tanto en apartado técnico como en documentación. 
+
+\begin{itemize}
+    \item Implementar pequeño scrypt para obtener las reglas de asociacion utilizadas en el proyecto.
+    \item Finalizar la memoria.
+    \item Finalizar los anexos.
+    \item Optimización de alguna parte de código referente a ambas aplicaciones.
+    \item Realización de unos videos explicativos sobre el uso del proyecto.
+\end{itemize}
+
+\imagen{Sprint_6.png}{Commits realizados en el Sprint 6}
+
+\section{Estudio de viabilidad}
+El estudio de viabilidad del proyecto se ha realizado desde el punto de vista económico y legal.
+\subsection{Viabilidad económica}
+Para poder determinar si un proyecto software es viable económicamente, se deben calcular los gastos que supondría realizar el proyecto y los beneficios que se podrían obtener del mismo. Una vez realizados estos cálculos, se puede determinar si el proyecto es un proyecto viable desde el punto de vista económico.
+\subsubsection{Costes Hardware}
+Para realizar este proyecto se ha necesitado:
+\begin{itemize}
+    \item Ordenador portátil Asus: 900€
+    \item Dragino LoRaWAN Gateway: 165€
+    \item Merry IoT Motion Detection: 45€
+\end{itemize}
+Teniendo en cuenta la vida útil económica de estos dispositivos, el coste anual de cada uno sería:
+\begin{itemize}
+    \item Ordenador portátil Asus (4 años): 225€
+    \item Dragino LoRaWAN Gateway (5 años): 33€
+    \item Merry IoT Motion Detection (6 años): 7,5€
+\end{itemize}
+Aunque estos dispositivos seguramente podrían seguir usándose pasada la vida útil contemplada, debido a posibles mejoras técnicas y  nuevas tecnologías superiores a estos dispositivos, convendría actualizarlos y prescindir de ellos. 
+\subsubsection{Costes Software}
+Para realizar este proyecto se ha necesitado:
+\begin{itemize}
+    \item Sistema operativo Windows 11: 145€
+    \item Dominio web: 4,55€
+\end{itemize}
+Aclarar que la compra del dominio web se paga de forma anual y el sistema operativo se amortiza dependiendo del dispositivo en el que esté instalado, por lo tanto dispone de 4 años de vida útil al estar en el ordenador portátil Asus.
+\subsubsection{Coste de Desarrollo}
+Considerando que el proyecto lo he desarrollado yo solo, el único coste de desarrollo a tener en cuenta sería mi sueldo.
+\begin{itemize}
+    \item Sueldo anual: 6.240€
+    \item Sueldo mensual: 520€
+\end{itemize}
+Este sueldo está calculado suponiendo que se trabaja 40 horas mensuales.
+\subsubsection{Costes Adicionales}
+De momento no se ha necesitado añadir ningún coste adicional no planteado anteriormente.
+\subsubsection{Coste Total}
+Suponiendo que se llevara a cabo el proyecto durante un año, vamos a calcular el coste del mismo:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|p{5cm}|}
+\hline
+\textbf{Elemento} & \textbf{Coste Anual (€)} & \textbf{Comentario} \\
+\hline
+Hardware: Portatil Asus & 225  & Vida útil 4 años. \\
+\hline
+Hardware: Gateway Dragino & 33  & Vida útil 5 años. \\
+\hline
+Hardware: Sensor MerryIoT & 7,5  & Vida útil 6 años. \\
+\hline
+Software: Dominio web & 4,55 & Uso exclusivo para el proyecto. \\
+\hline
+Software: Windows 11 & 36,25  & Licencia del sistema operativo \\
+\hline
+Horas de desarrollo & 6240  & Sueldo aproximado \\
+\hline
+\textbf{TOTAL} & 6.546,3  & Coste total de un año de desarrollo \\
+\hline
+\end{tabular}
+\caption{Resumen de costes estimados durante un año}
+\label{tab:viabilidad-economica}
+\end{table}
+Una vez observados los cálculos, pretender sacar rédito económico del proyecto parece no ser muy realista. Ya que es un proyecto que individualmente no tiene mucho interés comercial, tendría más interés como parte de un proyecto mucho más grande. 
+
+\subsection{Viabilidad legal}
+Para poder determinar si un proyecto es viable legalmente, se deben revisar las licencias utilizadas durante el proyecto y determinar si hay alguna barrera legal que impida el desarrollo y uso del proyecto.
+
+
+\subsubsection{Protección de Datos}
+
+El proyecto desarrollado recoge datos procedentes de un sensor IoT que, si bien no identifican directamente a personas, podrían considerarse datos personales en determinadas circunstancias si permiten inferir comportamientos (por ejemplo, detección de presencia o hábitos). Por eso mismo, en caso de ampliarse el uso de esta solución en entornos reales con usuarios, sería necesario cumplir con los reglamentos y leyes referentes a la protección de datos del lugar donde se fuera a usar:
+
+
+\begin{itemize}
+    \item Garantizar que la procedencia de los datos sea anónima.
+     \item Limitar el almacenamiento y uso a los fines autorizados.
+     \item Disponer de medidas de seguridad técnicas y organizativas para proteger los datos.
+\end{itemize}
+
+
+Además, si el usuario utiliza las funciones referentes a la recepción de paquetes enviados desde un servidor web, se expone a estar conectado a la red, pudiendo comprometer su privacidad.
+
+
+
+\subsubsection{Licencias y uso de software}
+
+El proyecto utiliza las siguientes tecnologías software:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Herramienta} & \textbf{Versión} & \textbf{Licencia} \\
+\hline
+Python & 3.11.0 & PSF \\
+Flask & 2.3 & BSD-3-Clause \\
+Pandas & 2.3.0 & BSD-3-Clause \\
+SQLAlchemy & 2.0.41 & MIT \\
+Werkzeug & 2.3 & BSD-3-Clause \\
+Requests & 2.32.4 & Apache 2.0 \\
+Pytz & 2025.2 & MIT \\
+mlxtend & 0.23.4 & BSD-3-Clause \\
+IntelliJ IDEA & 2024.3,6 & Apache 2.0 \\
+Docker & 28.0.4 & Apache 2.0 \\
+Docker Desktop & 4.40.0 & Propietaria \\
+Git & 2.45.1 & GPLv2 \\
+GitHub & N/A & Propietaria \\
+Overleaf & N/A & Propietaria \\
+Draw.io & 27.2.0 & Apache 2.0 \\
+HTML & 5 & BSD 3-Clause \\
+Bootstrap 5 & 5.3.0 & MIT \\
+Chart.js & 4.5.0 & MIT \\
+\hline
+\end{tabular}
+\caption{Licencias de herramientas utilizadas en el proyecto}
+\end{table}
+
+
+Todos los recursos software utilizados permiten su uso académico sin restricción y se respetan las licencias correspondientes.
+
+\subsubsection{Uso de hardware}
+
+El hardware utilizado incluye un gateway LoRaWAN Dragino y un sensor MerryIoT de detección de movimiento y condiciones ambientales. Ambos dispositivos se han instalado en mi domicilio, por lo tanto, no se ha realizado ninguna instalación en un espacio público ni se requiere certificación adicional, ya que ambos operan en bandas ISM de uso libre y conforme a normativa europea.
+
+\subsubsection{Conclusión}
+
+En conclusión,  el proyecto es legalmente viable, no vulnera la normativa de protección de datos ni derechos de terceros, y respeta las condiciones de uso de todo el software y hardware utilizado.
+
+
+

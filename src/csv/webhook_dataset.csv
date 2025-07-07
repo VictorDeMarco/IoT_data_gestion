@@ -1,14 +1,13 @@
 timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_celsius,humidity_percent,time_since_last_event_min,event_count,estado
 2025-06-12T23:05:37Z,False,False,True,2.4,26,45,0,719,real
 2025-06-12T23:06:03Z,False,False,True,2.4,26,46,0,722,real
-2025-06-12T23:06:03Z,False,False,True,2.4,46,26,0,722,infectado
+2025-07-04T18:38:03Z,True,False,True,3.1,-9,102,59,725,infectado
 2025-06-12T23:08:07Z,False,False,True,2.4,26,46,0,727,real
 2025-06-12T23:09:50Z,False,False,False,2.4,26,46,0,740,real
 2025-06-12T23:10:16Z,False,False,True,2.4,26,46,0,743,real
 2025-06-12T23:24:04Z,False,False,True,2.4,26,46,0,745,real
 2025-06-13T00:09:50Z,False,False,False,2.4,26,47,46,745,real
 2025-06-13T01:49:06Z,False,False,True,2.5,26,48,0,796,real
-2025-06-13T01:49:06Z,False,False,True,2.5,48,26,0,796,infectado
 2025-06-13T01:50:23Z,False,False,True,2.4,,,0,801,infectado
 2025-06-13T01:50:23Z,False,False,True,2.4,26,56,0,801,real
 2025-06-13T01:50:37Z,False,False,True,2.4,27,55,0,802,real
@@ -25,7 +24,6 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-13T10:09:50Z,False,False,False,2.4,26,43,0,945,real
 2025-06-13T10:10:55Z,False,False,True,2.4,26,43,0,953,real
 2025-06-13T10:11:40Z,False,False,True,2.4,26,44,0,958,real
-2025-06-13T10:11:40Z,False,False,True,2.4,44,26,0,958,infectado
 2025-06-13T10:13:31Z,False,False,True,2.4,26,44,0,969,real
 2025-06-13T10:16:34Z,False,False,True,2.4,27,44,0,974,real
 2025-06-13T10:18:26Z,False,False,True,2.4,28,42,0,976,real
@@ -103,7 +101,6 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-14T10:24:37Z,False,False,True,2.4,30,46,0,2105,real
 2025-06-14T10:24:44Z,False,False,True,2.4,30,47,0,2106,real
 2025-06-14T10:28:51Z,False,False,True,2.4,26,49,0,2125,real
-2025-06-14T10:38:01Z,False,False,False,2.4,25,52,0,2131,infectado
 2025-06-14T10:38:01Z,False,False,True,2.4,25,52,0,2131,real
 2025-06-14T10:45:25Z,False,False,True,2.4,24,53,0,2134,real
 2025-06-14T10:45:31Z,False,False,True,2.4,24,53,0,2135,real
@@ -121,7 +118,6 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-14T11:30:55Z,False,False,True,2.4,28,50,0,2237,real
 2025-06-14T11:35:31Z,False,False,True,2.4,25,52,0,2254,real
 2025-06-14T11:35:38Z,False,False,True,2.4,25,52,0,2255,real
-2025-06-14T11:35:38Z,False,False,False,2.4,25,52,0,2255,infectado
 2025-06-14T11:35:54Z,False,False,True,2.4,25,53,0,2256,real
 2025-06-14T11:45:10Z,False,False,True,2.4,25,68,0,2315,real
 2025-06-14T11:51:41Z,False,False,True,2.4,25,56,0,2333,real
@@ -136,7 +132,6 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-14T13:52:53Z,False,False,True,2.4,25,55,0,2405,real
 2025-06-14T14:01:43Z,False,False,True,2.4,25,55,0,2406,real
 2025-06-14T14:09:51Z,False,False,False,2.4,25,55,8,2406,real
-2025-06-14T14:17:12Z,False,False,False,2.4,24,56,0,2407,infectado
 2025-06-14T14:17:12Z,False,False,True,2.4,24,56,0,2407,real
 2025-06-14T14:32:17Z,False,False,True,2.4,24,56,0,2408,real
 2025-06-14T14:38:30Z,False,False,True,2.4,24,57,0,2409,real
@@ -179,7 +174,6 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-15T18:23:31Z,False,False,True,2.4,23,59,0,2958,real
 2025-06-15T18:31:40Z,False,False,True,2.4,23,57,0,2959,real
 2025-06-15T18:37:50Z,False,False,True,2.4,22,59,0,2974,real
-2025-06-15T18:38:07Z,False,False,False,2.4,23,59,0,2977,infectado
 2025-06-15T18:38:07Z,False,False,True,2.4,23,59,0,2977,real
 2025-06-15T19:09:51Z,False,False,False,2.4,19,60,32,2977,real
 2025-06-15T19:55:24Z,False,False,True,2.4,18,61,1,2978,real
@@ -198,7 +192,6 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-15T23:09:52Z,False,False,False,2.4,23,61,15,3134,real
 2025-06-15T23:09:52Z,False,False,False,2.4,999,-20,15,3134,infectado
 2025-06-15T23:24:33Z,False,False,True,2.4,23,60,0,3135,real
-2025-06-15T23:30:37Z,False,False,False,2.4,23,60,0,3136,infectado
 2025-06-15T23:30:37Z,False,False,True,2.4,23,60,0,3136,real
 2025-06-15T23:38:28Z,False,False,True,2.4,24,60,0,3144,real
 2025-06-16T00:09:52Z,False,False,False,2.4,25,57,31,3145,real
@@ -232,7 +225,6 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-17T20:39:27Z,False,False,True,2.4,24,59,0,3321,real
 2025-06-17T20:39:42Z,False,False,True,2.4,24,59,0,3323,real
 2025-06-18T10:48:15Z,False,False,True,2.4,26,50,0,3901,real
-2025-06-18T10:48:15Z,False,False,False,2.4,26,50,0,3901,infectado
 2025-06-18T10:49:29Z,False,False,True,2.4,26,50,0,3907,real
 2025-06-18T11:09:53Z,False,False,False,2.4,26,50,7,3976,real
 2025-06-18T12:07:04Z,False,False,True,2.4,26,50,1,4033,real
@@ -291,7 +283,6 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-06-26T22:57:22Z,True,False,True,3.1,67,87,6,48479,infectado
 2025-06-27T00:09:57Z,False,False,False,2.4,24,56,0,11045,real
 2025-06-27T00:10:05Z,False,False,True,2.4,24,56,0,11046,real
-2025-06-27T00:16:43Z,True,False,False,2.4,27,45,0,13000,infectado
 2025-06-27T00:16:58Z,False,False,True,2.4,24,56,0,11047,real
 2025-06-27T01:09:57Z,False,False,False,2.4,25,56,1,11058,real
 2025-06-27T02:09:57Z,False,False,False,2.4,25,56,2,11071,real
@@ -314,8 +305,6 @@ timestamp,occupied,button_pressed,tamper_detected,battery_voltage,temperature_ce
 2025-07-03T10:41:40Z,False,False,False,3.2,31,-3,42,13922,infectado
 2025-07-04T05:19:25Z,False,False,True,2.4,25,55,0,16755,real
 2025-07-04T09:54:11Z,True,True,False,2.6,59,84,23,4026,infectado
-2025-07-04T18:38:03Z,True,False,True,3.1,-9,102,59,8795,infectado
 2025-07-06T08:46:44Z,True,True,False,3.2,47,26,33,4900,infectado
 2025-07-06T08:52:08Z,False,False,True,2.4,34,45,0,12000,real
-
 2025-07-06T19:16:43Z,False,False,True,2.4,23,45,22,12000,infectado

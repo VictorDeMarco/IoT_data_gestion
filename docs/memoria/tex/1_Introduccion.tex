@@ -1,0 +1,35 @@
+\capitulo{1}{Introducción}
+
+Durante el desarrollo de este proyecto, he realizado una serie de funciones con el propósito de mejorar la seguridad y gestión de datos procedentes de un dispositivo IoT. Estas funciones se pueden dividir en tres partes:
+
+En primer lugar,la configuración del hardware involucrado: un gateway LoRaWAN Dragino y un sensor de detección de movimiento MerryIoT. Ambos dispositivos fueron integrados y conectados a la plataforma The Things Network (TTN), estableciendo un flujo de datos constante, que más tarde utilizaría para crear el dataset principal del proyecto.
+
+La segunda función fue el diseño y desarrollo de una primera aplicación web con el propósito de recibir y clasificar los datos. Mediante la implementación de un webhook proporcionado por TTN y el uso de un túnel de Cloudflare, esta aplicación es capaz de recibir en tiempo real los paquetes enviados por el dispositivo IoT. Una vez recibidos, dichos paquetes eran evaluados mediante un conjunto de reglas heurísticas con el objetivo de determinar si correspondían a situaciones normales (reales) o a comportamientos sospechosos (infectados). Finalmente, todos los datos analizados eran almacenados en un archivo CSV.
+
+Por último, se desarrolló una segunda aplicación web, esta vez centrada en la interacción con el usuario.Permitiéndole gestionar e interactuar con distintos archivos CSV. Entre sus funcionalidades destacar la posibilidad de subir nuevos datasets, analizarlos automáticamente, enviar paquetes personalizados a la primera aplicación web y visualizar gráficas interactivas generadas a partir de los datos del archivo que el usuario desee.
+
+
+\section{Estructura de la memoria}
+\begin{itemize}
+    \item \textbf{Introducción}: Descripción de las principales funciones realizadas durante el proyecto y la estructura de la memoria.
+    \item \textbf{Objetivos del Proyecto}: Explicación de los objetivos generales, técnicos y personales que se intentan lograr durante el desarrollo del proyecto.
+    \item \textbf{Conceptos Teóricos}: Descripción de los principales conceptos teóricos relacionados y aplicados durante el desarrollo del proyecto.  
+    \item \textbf{Técnicas y Herramientas}: Explicación de las técnicas y herramientas utilizaras para poder llevar a cabo el desarrollo del proyecto.
+    \item \textbf{Aspectos Relevantes del Desarrollo del Proyecto}: Explicación detallada de las diferentes partes del proyecto, desde la generación del dataste hasta la creación de las distintas aplicaciones web relacionadas con el mismo.
+    \item \textbf{Trabajos Relacionados}: Consideración de trabajos y proyectos anteriores relacionadas con el tema tratado en este proyecto.
+    \item \textbf{Conclusiones y Líneas de Trabajo Futuras}: las conclusiones obtenidas al finalizar el proyecto y las posibles futuras lineas de trabajo que se podrían llevar a cabo en este proyecto.
+\end{itemize}
+
+\section{Estructura de los anexos}
+\begin{itemize}
+   \item \textbf{Plan de Proyecto}: El plan de proyecto consta de analizar la planificación temporal y de estudiar la viabilidad económica y legal del proyecto.
+    \item \textbf{Requisitos}: En este apartado se realiza una explicación de los requisitos funcionales y no funcionales ademas de nombrar un numero variado de casos de uso referentes al proyecto.
+    \item \textbf{Diseño}: En este apartado se explica que datos utiliza el proyecto, su arquitectura y se muestran diferentes diagramas sobre el funcionamiento de sus aplicaciones.
+    \item \textbf{Manual del programador}: En este apartado se explican la estructura de directorios y archivos que componen el proyecto. También se explica como crear el entorno necesario para el proyecto. Además se define cada paso necesario para lograr compilar, ejecutar e instalar el proyecto.
+    \item \textbf{Manual del usuario}: En este apartado se detallan los distintos requisitos necesarios para que el usuario pueda usar el software desarrollado correctamente.
+    \item \textbf{Sostenibilidad Curricular}: En este apartado se reflexiona sobre los aspectos de sostenibilidad que se han considerado durante el proyecto.
+\end{itemize}
+
+\section{Materiales adicionales}
+\subsection{Despliegue con Docker}
+El proyecto desarrollado está pensado para ser ejecutado a través de un contenedor de Docker, aun así puede ser ejecutado de forma local si así se desea.

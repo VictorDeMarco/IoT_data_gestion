@@ -1,0 +1,33 @@
+\capitulo{6}{Trabajos relacionados}
+
+Actualmente, el Internet de las Cosas (IoT) es un paradigma tecnológico en constante expansión que permite la conexión de dispositivos físicos a través de redes inalámbricas para la recogida, transmisión y análisis de datos en tiempo real.
+
+Por eso mismo, garantizar que la comunicación establecida en esa red es segura y robusta es un trabajo altamente solicitada y con propuestas muy diversas para llevarla acabo.
+
+En este apartado voy a mencionar tres trabajos relacionados con este campo, que considero importante comentar:
+
+
+\section{Desarrollo de un prototipo de modulo de análisis de
+trafico basado en wireshark para detección de ataques de denegación usando inspección de tramas lorawan que provea una capa de integración api rest}
+
+Este proyecto \cite{Rel1} se centra en la creación de un sniffer capaz de capturar y analizar paquetes LoRaWAN con el objetivo de detectar ataques de denegación de servicio (DoS/DDoS). A través del uso de herramientas como Wireshark, Pyshark y Tshark, así como del desarrollo de una API REST mediante Django, el autor consigue construir un sistema que no solo captura y decodifica paquetes LoRaWAN, sino que también los almacena en una base de datos accesible para futuras evaluaciones de seguridad.
+
+ La propuesta de realizar una inspección de tramas en el entorno de red, es sin duda una técnica que podría aplicarse como capa adicional en mi sistema para mejorar las capacidades de diagnóstico y detección temprana de amenazas dentro del ecosistema LoRaWAN.
+ 
+
+
+\section{Trend Micro Finds LoRaWAN Security Lacking, Develops LoRaPWN Python Utility}
+
+Este proyecto \cite{Rel2} desarrolló LoRaPWN, una herramienta en Python diseñada para funcionar con radios definidas por software (SDR) compatibles con GNU Radio. LoRaPWN permite capturar, descifrar y generar paquetes LoRaWAN (versiones 1.0 y 1.1), romper (brute-force) el procedimiento OTAA, descifrar cargas útiles y los campos MIC, así como simular ataques DoS mediante replays y manipulaciones de paquetes.
+
+Este proyecto está especialmente relacionado con el mío, ya que en mi proyecto se utiliza el procedimiento OTAA para unir el dispositivo IoT con TTSS. Sería interesante ver cómo respondería mi proyecto a un intento de ataque a través del método desarrollado por este artículo, y desarrollar posibles defensas ante este tipo de ataques.
+
+
+
+\section{Detecting IoT device compromise using Python}
+
+El objetivo principal de este proyecto \cite{Rel3} es desarrollar una herramienta en Python capaz de analizar tráfico de red IoT a través de archivos .pcap, con el fin de detectar y modelar flujos de comunicación entre dispositivos. Esta herramienta permite extraer información útil sobre el comportamiento de los dispositivos conectados a una red local, facilitando tareas de análisis de seguridad, identificación de patrones anómalos y caracterización de dispositivos IoT.
+
+ Esta solución permite identificar posibles vectores de ataque, caracterizar el comportamiento normal y anómalo, y servir como base para futuras estrategias de detección y mitigación de amenazas en entornos IoT que podrían aplicarse al proyecto que he desarrollado, mejorando así su seguridad. 
+
+ 
