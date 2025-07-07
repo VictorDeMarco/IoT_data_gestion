@@ -1,3 +1,3 @@
 cd .\src\webhook_receptor\rules
-pip install mlxtend
+pip install -r docker\requirements.txt
 python rules.py
